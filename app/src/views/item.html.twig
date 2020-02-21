@@ -1,0 +1,302 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}    
+	{{ 'Reviews for %name%'|trans({'%name%':item.name}) }}
+{% endblock %}
+
+{% block body %}
+
+<div class="pure-g">
+	<div class="pure-u-1 pure-u-lg-1 crumps">
+		<a href="/">{{'Home'|trans}}</a> 
+		{% for category in item.cats %}
+			> <a href="/category/{{item.cats_id[loop.index0]}}">{{category}}</a>
+		{% endfor %}
+			> {{ item.name }} {{'Review'|trans}}
+	</div>
+</div>
+
+<div class="item-header-wrapper">
+
+	{# {% if item.images|length > 0 %}
+		<div class="pure-g images">
+			<div class="pure-u-1 floatbox" data-fb-options="group:1 colorTheme:silver boxRoundCorners:none zoomBorder:10px">
+				{% for image in item.images %}
+				<a href="{{image}}">
+					<img alt="{{loop.index}} image" src="{{image}}">
+				</a>
+				{% endfor %}
+			</div>
+		</div>
+	{% endif %} #}
+ 
+
+	<div class="pure-g">
+
+		<div class="pure-u-1 pure-u-lg-7-24">
+			<center>
+				<img class="item-image" src="{{item.image}}">
+			</center>
+		</div>
+
+		<div class="pure-u-1 pure-u-lg-9-24">
+			<h2 class="item-name">{{item.name}}</h2>
+
+			{% if average_rate>0 %}
+				{{'Reviews'|trans}}: {{total_rates}} | {{'Overal rating'|trans}}: 
+				<strong> 
+					{% if average_rate<3 %} {{'bad'|trans}} 
+					{% elseif average_rate<4 %} {{'average'|trans}}   
+					{% elseif average_rate<5 %} {{'good'|trans}}  
+					{% else %} {{'excellect'|trans}} 
+					{% endif %}
+				</strong>
+
+				<br> 
+				<div class="item-average-rating">
+					{% set final = average_rate %}
+						{% for f in 1..final %}
+							{# <span class="yellow-star-rating">&#9733;</span> #}
+							<img src="/img/star-full.png" class="rate-star">
+						{% endfor %}
+						{% if final<5 %}
+							{% for i in 1..5-final %}
+								{# <span class="empty-star-rating">&#9734;</span> #}
+								<img src="/img/star-empty.png" class="rate-star">
+							{% endfor %}
+					{% endif %}
+				</div>
+
+				<div class="item-website-div">
+					<a rel="nofollow" href="{{item.website}}">{{'Visit'|trans}} {{ item.website }}</a>
+				</div>
+			{% endif %}
+
+		</div>
+
+		{# RATINGS IN HEADER #}
+
+		{% if total_rates > 0 %}
+			<div class="pure-u-1 pure-u-lg-8-24">
+				<div class="pure-g rates">
+					<div class="pure-u-1 pure-u-sm-1 pure-u-md-1 center">
+						<table class="rating-table">
+							{% for r in rates|reverse %}
+								{% set width = (r / total_rates)*100|round(0, 'ceil') %}
+								<tr> 
+								<td>
+
+									{% if loop.index  == 1 %}
+										{{'Excellent'|trans}}
+									{% elseif loop.index  == 2 %}
+										{{'Good'|trans}}
+									{% elseif loop.index  == 3 %}
+										{{'Average'|trans}}
+									{% elseif loop.index  == 4 %}
+										{{'Bad'|trans}}
+									{% elseif loop.index  == 5 %}
+										{{'Awful'|trans}}
+									{% endif %}
+									{# {% set final = 6 - loop.index %}
+									{% for f in 1..final %}
+										<span>&#9733;</span>
+									{% endfor %}
+									{% if final<5 %}
+										{% for i in 1..5-final %}
+											<span>&#9734;</span>
+										{% endfor %}
+									{% endif %} #}
+								</td>
+								<td>
+									<div class="ratingsbar-wrapper" style="width:200px;">
+										<div class="ratingsbar{{loop.index}}" style="width:{{width}}%;">{{r}}</div>
+									</div>
+								</td>
+								</tr> 
+							{% endfor %}
+						</table>
+					</div>
+				</div>
+			</div>
+		{% endif %}
+
+	</div>
+</div>
+
+{# REVIEWS #}
+
+{% if item.comments|length > 0 %}
+
+	<div class="pure-g commentswrapper">
+		<div class="pure-u-1 pure-u-lg-1">	
+			{% for comment in item.comments %}
+				<div class="pure-g comments">
+					<div class="pure-u-1">
+						<img class="comment-author-image" src="/img/users/{{comment.avatar}}"/>
+						<div class="comment-date" >{{'Review left on'|trans}} {{ comment.date|date("m/d/Y") }}</div>
+						<div class="comment-author-name"><strong>{{ comment.author }}</strong></div>
+						{% if (comment.rating) %}
+						<br>
+						<div  class="stars">
+							{% for i in 1..comment.rating %}
+							{# <span>&#9733;</span> #}
+							<img src="/img/star-full.png" class="rate-star-comments">
+							{% endfor %}
+							{% if comment.rating<5 %}
+							{% for i in 1..5-comment.rating %}
+							{# <span>&#9734;</span> #}
+							<img src="/img/star-empty.png" class="rate-star-comments">
+							{% endfor %}
+							{% endif %}
+						</div> 
+						{% endif %}
+					</div>
+					<div class="pure-u-1">
+						<div class="feebacktext">
+							{{comment.text}}
+						</div>
+						<span class="placeandtime">{{comment.details}}</span>
+					</div>
+				</div>
+				{% if comment == item.comments[2] %}
+					<div class="neighbors">
+						{% for neighbor in item.neighbors %}
+							<a href="/{{neighbor['id']}}/{{neighbor['slug']}}">{{neighbor['name']}}</a> 
+							{% if loop.last == false %} :: 
+							{% endif %}
+						{% endfor %}
+					</div>
+				{% endif %}
+			{% endfor %}
+
+			{# neighbors #}
+
+			{% if item.comments|length < 3 %}
+				<div class="neighbors margintop15">
+					{% for neighbor in item.neighbors %}
+						{% if item.other_artists_comments|length > 0 %}
+							{% set foo = item.other_artists_comments|json_encode %}
+						{% else %}
+							{% set foo = '' %}
+						{% endif %}
+						{% if neighbor['name'] not in foo %}
+							<a href="/{{neighbor['id']}}/{{neighbor['slug']}}">{{neighbor['name']}}</a> 
+							{% if loop.last == false %} :: 
+							{% endif %}
+						{% endif %}		
+					{% endfor %}
+				</div>
+			{% endif %}
+
+			{# other artists comments #}
+
+			{% if item.other_items_comments|length > 0 %}
+
+				<div class="pure-g">
+					<div class="pure-u-1">
+						<h4>{{'Fan Reviews'|trans}}</h4>
+						
+
+						{{ 'There are no reviews about %name% for now, <b>but</b> check out reviews about other artists below.'|trans({'%name%':item.name}) }}
+
+						<br>
+						<br>
+					</div>
+				</div>
+				
+				{% for comment in item.other_items_comments %}
+
+					<div class="pure-g comments">
+						<div class="pure-u-1-4">
+							<img src="{{ comment.artists_image }}" width="90%" />
+						</div>
+						<div class="pure-u-3-4">
+							<div><a href="/{{ comment.artists_id }}/{{ comment.artists_slug }}">{{comment.item_name}}</a></div>
+							<div  class="stars">
+								{% for i in 1..comment.rating %}
+								★
+								{% endfor %}
+								{% if comment.rating<5 %}
+								{% for i in 1..5-comment.rating %}
+								☆
+								{% endfor %}
+								{% endif %}
+							</div> 
+							<div class="username"><strong>{{ comment.author }}</strong></div>
+							<div class="feebacktext">
+								{{ comment.text|replace({'\\u2019':"'",'\\u201d':'','\\u201c':'','\\u2013':' ','\\n':"<br>"}) }}
+							</div>
+							<span class="placeandtime">{{ comment.details }}</span>
+						</div>
+					</div>
+
+				{% endfor %}
+
+			{% endif %}
+
+		</div>
+	</div>
+{% endif %} {# if item.comments|length > 0  #}
+
+
+<div class="comments-form-wrapper">
+	<div class="pure-g">
+		<div class="pure-u-1">
+			<h3>{{'Leave a Review For for'|trans}} {{item.name}}</h3>
+			<br>
+		</div>
+	</div>
+
+	<div class="pure-g">
+		<div class="pure-u-1 pure-u-md-1-1">
+
+			<form class="pure-form" action="#" method="POST"> {# /feedbackpost #}
+
+				<fieldset class="pure-group">
+					<input autocomplete='name' name="feedback_name" type="text" class="pure-input-1" placeholder="{{'Your Name'|trans}}">
+					<input autocomplete='email' name="feedback_email" type="email" class="pure-input-1" placeholder="Email">
+				</fieldset>
+
+				<input name="id" type="hidden" value="{{item.id}}">
+				<input name="user_submit" type="hidden" value="1">
+
+				<span class="rating">
+					<input name="feedback_rate" type="radio" class="rating-input" id="rating-input-1-5" />
+					<label for="rating-input-1-5" class="rating-star"></label>
+					<input name="feedback_rate" type="radio" class="rating-input" id="rating-input-1-4" />
+					<label for="rating-input-1-4" class="rating-star"></label>
+					<input name="feedback_rate" type="radio" class="rating-input" id="rating-input-1-3" />
+					<label for="rating-input-1-3" class="rating-star"></label>
+					<input name="feedback_rate" type="radio" class="rating-input" id="rating-input-1-2" />
+					<label for="rating-input-1-2" class="rating-star"></label>
+					<input name="feedback_rate" type="radio" class="rating-input" id="rating-input-1-1" />
+					<label for="rating-input-1-1" class="rating-star"></label>
+				</span>
+
+				<fieldset class="pure-group">
+					<input name="feedback_title" type="text" class="pure-input-1" placeholder="{{'Title'|trans}}">
+					<textarea disabled name="feedback_text" class="pure-input-1" placeholder="{{'Your feedback'|trans}}"></textarea>
+				</fieldset>
+
+				{# <div class="g-recaptcha" data-sitekey="{{recaptcha_site_key}}"></div> #}
+
+				<button disabled type="submit" class="pure-button pure-input-1 pure-button-primary">{{'Submit'|trans}}</button>
+			</form>
+
+		</div>
+	</div>
+</div>
+
+<script>
+	$( document ).ready(function() {
+		$( "input.rating-input" ).click(function() {
+			name=$(this).attr('name');
+	$("input[name='"+name+"']").val(""); // remove value from all radio's (with this name)
+	$("input[name='"+name+"']:checked").val($(this).attr('id')); // add value to checked radio
+});
+	});
+</script>
+
+{% endblock %}
+
+ 

@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>Instructions - Floatbox</title>
+<link href="docs.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="content">
+
+<p class="page_title">Floatbox - Instructions</p>
+<a href="https://floatboxjs.com/" style="display:block; margin-top:-1em;">floatboxjs.com</a>
+
+<div id="index" class="section_break"></div>
+
+<p class="section_title">Index</p>
+<ul class="index">
+<li><a href="#quickstart">Quick-start</a></li>
+<li><a href="#bestpractice">Best practices</a></li>
+<li><a href="#activation">Activating elements</a></li>
+<li><a href="#options">Configuring options</a></li>
+<li><a href="#linkoptions">Setting options directly on links</a></li>
+<li><a href="#pageoptions">Setting page-specific options</a></li>
+<li><a href="#globaloptions">Setting site-wide options</a></li>
+<li><a href="#mobileoptions">Setting mobile-specific options</a></li>
+<li><a href="#type">File &amp; content types</a></li>
+<li><a href="#image">Images: galleries and slideshows</a></li>
+<li><a href="#html">HTML content: iFrames, AJAX, inline DIVs &amp; direct</a></li>
+<li><a href="#video">Video: HTML5 player, YouTube &amp; Vimeo</a></li>
+<li><a href="#pdf">PDF &amp; Scribd.com</a></li>
+<li><a href="#autoheight">Let Floatbox set content height</a></li>
+<li><a href="#cycler">Cycling images and thumbnails</a></li>
+<li><a href="#tooltip">Enhanced tooltips</a></li>
+<li><a href="#context">Context boxes</a></li>
+<li><a href="#popup">Popup thumbnails</a></li>
+<li><a href="#captions">Captions</a></li>
+<li><a href="#headandfoot">Header and Footer</a></li>
+<li><a href="#outerclose">Alternate Close button</a></li>
+<li><a href="#classoptions">Built-in class options</a></li>
+<li><a href="#info">Info box for secondary content</a></li>
+<li><a href="#print">Print contents</a></li>
+<li><a href="#newwindow">Open in a new window</a></li>
+<li><a href="#indexlinks">Index links in a gallery set</a></li>
+<li><a href="#navigation">Navigation and Controls</a></li>
+<li><a href="#layout">Layout</a></li>
+<li><a href="#appearance">Appearance and Colors</a></li>
+<li><a href="#language">Language localization</a></li>
+<li><a href="#auto">Auto-start and exit tasks</a></li>
+<li><a href="#imagemap">Image map areas</a></li>
+<li><a href="#dynamic">Dynamically loading Floatbox content via AJAX, script or UpdatePanel</a></li>
+<li><a href="#loading">Page interaction while loading</a></li>
+<li><a href="#upgrade">Upgrading</a></li>
+<li><a href="#central">Serving a single Floatbox install to multiple web sites</a></li>
+<li><a href="#wordpress">WordPress integration</a></li>
+<li><a href="#alternate">Alternate (non-standard) installations</a></li>
+<li><a href="#library">Using the library functions</a></li>
+</ul>
+
+<div id="quickstart" class="section_break"></div>
+<p class="section_title">Quick-start</p>
+<p>
+Floatbox has a lot of depth and versatility, but it's quite simple to install and get the basic functionality operational.
+The following three steps are all that's needed to get started.
+</p>
+<ol>
+<li><b>Install</b> &mdash;
+Open the downloaded zip file and drag or copy the entire floatbox folder from that zip file to the web site's root folder (or other folder, if preferred),
+or push the whole floatbox folder and its contents up to a hosted site.
+</li>
+<li><b>Include</b> &mdash;
+Add the floatbox.css and floatbox.js files to pages with two lines similar to the following, usually placed in the &lt;head&gt; section:<br/>
+<span class="code">&lt;link rel="stylesheet" href="/floatbox_123/floatbox.css" /&gt;</span><br/>
+<span class="code">&lt;script src="/floatbox_123/floatbox.js"&gt;&lt;/script&gt;</span><br/>
+Of course, the folder paths in those two include lines have to match the folder name and location where the Floatbox package was placed.
+</li>
+<li><b>Use</b> &mdash;
+Links to image and video content, such as the following, will automatically open the linked content in Floatbox with no additional markup required
+(thanks to the activateMedia option defaulting to 'true'):<br/>
+<span class="code">&lt;a href="myPic.jpg"&gt;click me&lt;/a&gt;</span><br/><br/>
+</li>
+</ol>
+<p>
+The above gets the basics in place and operational. To implement more than the basics, it is necessary to read the rest of this 'instructions' document
+and the <a href="options.html">options reference</a> to learn what Floatbox can do and how to make it do it.
+Anyone interested in scripting with Floatbox needs to review the programmer's <a href="api.html">API reference</a> before tearing into writing code.
+All these reference materials are in the docs folder of the downloaded zip file and are also online on the <a href="https://floatboxjs.com/">floatboxjs.com</a> site.
+(The online reference materials always pertain to the latest floatbox version and are not to be relied upon when using an older release of the software.)<br/>
+Reviewing the <a href="https://floatboxjs.com/demo">demo page</a> is a great way to see the scope of what Floatbox can do, complete with markup and code snippets showing how it is done.
+</p>
+<p>
+<b>Using WordPress</b>? See the <a href="#wordpress">WordPress</a> section of these instructions for an easy way to use Floatbox in a child theme.
+</p>
+<p class="p_title">"Help!!! Quick-start didn't work for me!! My content just opens on its own page in the browser, and not in a floatbox!"</p>
+<p>
+If you find yourself saying that, it's 99% likely that the problem lies in the path used to reference the floatbox.css and floatbox.js files.
+Perhaps the floatbox folder is not really at the root of the site, but has instead been placed in a sub-folder a level or two up from the root.
+If the floatbox folder is in a sub-folder, that sub-folder name will need to be included in the path references.
+</p><p>
+Any modern browser's developer tools and console can be a great assistance in tracking down errors such as missing files or mismatched path references.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="bestpractice" class="section_break"></div>
+<p class="section_title">Best practices</p>
+<ul>
+<li>
+Take some time to read the documentation before diving into implementation.
+</li><li>
+Keep it simple and add customization and complexity incrementally after things are working fine in basic usage with default settings.
+</li><li>
+Use any code samples just to read and understand what is being illustrated.
+Don't copy and paste found code. Write your own, suitable to your context, that you understand and can maintain and integrate with little fuss.
+</li><li>
+Put the following meta tag on all web pages so that mobile browsers will enter the site cleanly and the device size
+stands a chance of being successfully measured:<br/>
+<span class="code">
+&lt;meta name="viewport" content="width=device-width,initial-scale=1"/&gt;
+</span>
+</li><li>
+To create a gallery set from all image links on a page, change the 'autoGallery' setting to true and add floatbox captions by
+filling in 'title' attributes on the link elements (or on &lt;img&gt; thumbnails within the links).
+That's it; no other markup required.
+(<a href="#image">Details below</a>)
+</li><li>
+If using Floatbox on multiple sites under your control, consider serving a single instance of Floatbox
+via https from a reliable server that you know is going to stick around long term.
+</li><li>
+If using Floatbox in WordPress, attach it as a child-theme to your active WordPress theme.
+(<a href="#wordpress">Details below</a>)
+</li><li>
+Implement a cache-management strategy when updating Floatbox.
+(Not Floatbox-specific, this really applies to all site content.)
+</li><li>
+Speed up your site by implementing server-side gzip compression for all text content.
+(This too is not Floatbox-specific.)
+</li>
+</ul>
+<p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="activation" class="section_break"></div>
+<p class="section_title">Activating elements</p>
+<p>
+The 'Quick-start' section above gets images and videos (and PDF) displayed in a floatbox,
+without the need for additional markup such as the 'floatbox' class name (described in this section).
+Various HTML content types (described below) can be referenced by the href attribute of &lt;a&gt; and &lt;area&gt; links,
+and marked for Floatbox behaviour by assigning the 'floatbox' class.
+</p><p>
+The 'floatbox' class can be assigned directly to each link in each link's class attribute,
+or can be inherited from the class attribute of a containing parent element.
+Typically, the parent element might be a &lt;div&gt; for standard anchor links
+and might be the &lt;map&gt; element for a collection of area links,
+but any element type can be used as a containing parent.
+A link can be excluded from inheriting the floatbox class from a parent element
+by assigning a class name of 'nofloatbox' to that link.<br/>
+</p><p>
+To illustrate:<br/>
+Here's 3 links on a page. The first two open as standalone images in a floatbox
+(because they are media and the 'activateMedia' option defaults to true while the 'autoGallery' option defaults to false).
+The third navigates to a new page (because it is not media and does not have a 'floatbox' class name assigned)...
+</p>
+<div class="code">&lt;a href="pic1.jpg"&gt;Wallace&lt;/a&gt;
+&lt;a href="pic2.jpg"&gt;Gromit&lt;/a&gt;
+&lt;a href="credits.php"&gt;Credits&lt;/a&gt;
+</div>
+<p>The HTML link to credits.php could be instructed to also display in a floatbox by assigning the 'floatbox' class to it...
+</p>
+<div class="code">&lt;a href="pic1.jpg"&gt;Wallace&lt;/a&gt;
+&lt;a href="pic2.jpg"&gt;Gromit&lt;/a&gt;
+&lt;a class="floatbox" href="credits.php"&gt;Credits&lt;/a&gt;
+</div>
+<p>The first example above that shows only the images in a floatbox can be replicated using a containing element and the 'floatbox' and 'nofloatbox' classes like this...
+</p>
+<div class="code">&lt;div class="floatbox"&gt;
+  &lt;a href="pic1.jpg"&gt;Wallace&lt;/a&gt;
+  &lt;a href="pic2.jpg"&gt;Gromit&lt;/a&gt;
+  &lt;a class="nofloatbox" href="credits.php"&gt;Credits&lt;/a&gt;
+&lt;div&gt;
+</div>
+<p>And the second example that opens all 3 links in a floatbox could be setup with an inherited 'floatbox' class like this...
+</p>
+<div class="code">&lt;div class="floatbox"&gt;
+  &lt;a href="pic1.jpg"&gt;Wallace&lt;/a&gt;
+  &lt;a href="pic2.jpg"&gt;Gromit&lt;/a&gt;
+  &lt;a href="credits.php"&gt;Credits&lt;/a&gt;
+&lt;div&gt;
+</div>
+<p>
+The power of using a containing element with the 'floatbox' class on it, and the real reason for setting things up like this,
+is to assign option settings to each contained link without needing to repeat those options on each individual link,
+or to light up multiple links to HTML content without repeating the 'floatbox' class on each one.<br/>
+For example, here we are configuring a gallery set of 3 items (2 images and one HTML content page) by grouping them with options assigned to a parent div...
+</p>
+<div class="code">&lt;div class="floatbox"
+data-fb-options="group:1 colorTheme:silver boxRoundCorners:none" &gt;
+  &lt;a href="pic1.jpg"&gt;Wallace&lt;/a&gt;
+  &lt;a href="pic2.jpg"&gt;Gromit&lt;/a&gt;
+  &lt;a href="credits.php"&gt;Credits&lt;/a&gt;
+&lt;div&gt;
+</div>
+<p>Note that a class attribute can hold more than one class name by separating the names with spaces:
+<span class="code">class="myclass floatbox"</span> is perfectly legal and effective in all browsers.
+</p><p>
+Links on a page that have the 'floatbox' class - either implied, inherited, or directly assigned -
+get floatbox display behaviour assigned to them by the Floatbox library's internal activation routine that is automatically fired at page load time.
+Any links that get dynamically added to a page after page load time
+must be explicitly activated using the javascript <span class="code">fb.activate()</span> function
+as described below in the section titled "Dynamically loading Floatbox content via AJAX, script or UpdatePanel".
+</p><p>
+In addition to the core floatbox display, the Floatbox library includes capabilities to show cycling image sets,
+enhanced tooltips, context boxes, and popup thumbnails.
+These additional capabilities are also enabled by assigning class names to elements.
+Please see the relevant sections of these instructions for details.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="options" class="section_break"></div>
+<p class="section_title">Configuring options</p>
+<p>
+Floatbox options are used to set appearance preferences, size the floatbox, group items into sets, assign captions, etc.
+There are 3 different ways to set configuration options for floatbox.
+In order of precedence, options can be set from:
+</p>
+<ol>
+<li>data-fb-options attribute settings placed directly on a link, or inherited from a containing 'floatbox'-classed element (see 'Activating elements' above).
+These options apply only to the item(s) they are assigned to.</li>
+<li>fbOptions javascript objects (associative arrays) defined on the host page.
+These settings apply to all floatboxed links on the page.
+</li>
+<li>fbOptions.js file which will be automatically fetched at page load and applies to floatboxed items across the entire site.</li>
+</ol>
+<p>
+The fbOptions data structure supports the ability to assign options based on content type and class names assigned to initiating links.
+Additionally, all option-setting contexts include the ability to assign 'mobile' overrides, which will be applied to small-screen devices only
+and which give the ability to customize floatbox appearance and behaviour specifically for mobile phones.
+</p><p>
+Option preferences can be organized based on the scope those options are to be applied to.
+For example, a specific link pointing to HTML content may have a 'width' option set directly on it,
+while setting 'boxCornerRadius' for all image content might best be done in the type section of the fbOptions.js file.
+</p><p>
+Enhanced tooltips and context boxes are really just instances of the standard floatbox.
+As such, they will accept almost all the options that apply to floatboxes, and will respond to those option settings with the same results.
+See the 'Enhanced tooltips' and 'Context boxes' sections below for details about setting their options.
+(It's a little bit different than for standard floatboxed links.)
+</p><p>
+Option names and values are case-sensitive.
+Options defined in an option string need to have any values that contain 'special' characters wrapped in a pair of back-quotes (`) or tilde (~) characters in order to parse correctly.
+The special characters are the ones used as delimiters in option strings and consist of <b>: = &amp; ; ,</b> and <b>space</b>.
+</p><p>
+For example:
+</p>
+<ul>
+<li class="code">data-fb-options="caption:`this has spaces`"</li>
+<li class="code">data-fb-options="afterBoxStart:~if ( x &lt; 99 ) foo();~"</li>
+<li class="code">data-fb-options="mobile:`padding:12 numIndexLinks:0`"</li>
+</ul>
+<p>
+Details of the various option-setting methods follow.
+Don't overlook reading the <a href="options.html">options reference</a> to get the best understanding of the numerous Floatbox options available.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="linkoptions" class="section_break"></div>
+<p class="section_title">Setting options directly on links</p>
+<p>
+Options for a particular link get set in a 'data-fb-options' attribute on that link,
+or are inherited from options set on a containing div.
+(Be sure to read the "Activating elements" section of these instructions.)
+</p><p>
+The general syntax for setting options is:
+</p>
+<div class="code">&lt;a href="xyz" <b>data-fb-options="option1:value1 option2:value2 etc..."</b>&gt;</div>
+<p>
+When running a series of floatboxed items such as a gallery set or a slideshow,
+many of the options from the clicked link will apply to all items in the set.
+Some other options apply on a per item basis.
+It should usually be apparent from context which options are per item.
+For example, <span class="code">caption</span> and <span class="code">contentBackgroundColor</span> are per item
+whereas <span class="code">boxCornerRadius</span> and <span class="code">colorTheme</span> apply to the whole set.<br/>
+</p><p>
+There's lots of examples of options set on links over at the <a href="https://floatboxjs.com/demo">demo page</a>.
+One example that some people might find useful in its own right, and that should give a good sense of how options can be used,
+is the following anchor link which will start a slideshow:
+</p>
+<div class="code">&lt;a href="" class="floatbox"
+data-fb-options="doSlideshow:true group:myShow showThis:false
+afterSlideshow:exit navType:none" &gt;
+  Slideshow
+&lt;/a&gt;
+</div>
+<p>
+Here we are telling floatbox to start a slideshow, to use the gallery set that is defined with the group string 'myShow', that the current link target should not be part of that slideshow set, and no navigation controls should be shown in the floatbox.
+(The 'afterSlideshow' and 'navType' options in this example are not required to get the slideshow functionality, but are present just to illustrate customization of the slideshow.)
+</p><p>
+The option string syntax is quite flexible.
+Name:value pairs can be separated by spaces, semi-colons, commas or ampersands.
+The delimiter between a name and its value can be a colon or an equals sign.
+Pixel values can be given with or without the 'px' suffix.<br/>
+<span class="code">"colorTheme:red width:200"</span>,
+<span class="code">"colorTheme:red; width:200px;"</span>,
+<span class="code">"colorTheme:red, width:200px"</span> and
+<span class="code">"colorTheme=red&amp;width=200"</span>
+are all allowed and equivalent.
+</p><p>
+Note that options assigned directly on links, or as parameters to the fb.start API function, override or replace the same options assigned by the more global methods described below.
+To cancel an inherited option without setting a value for it, assign 'null' to the option.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="pageoptions" class="section_break"></div>
+<p class="section_title">Setting page-specific options</p>
+<p>
+The majority of floatbox's options are not item-specific and can be defined per page or globally rather than repeated on each link.
+Use an <b>fbOptions</b> javascript object to assign option settings to all items on a page.
+The fbOptions object uses the same structure and sections as does the fbOptions.js file, so take a look at that file to see how to build the fbOptions object.
+fbOptions is defined in a &lt;script&gt; element placed in the primary page's &lt;head&gt; or &lt;body&gt; section.
+(It will have no effect if placed on a framed child page, either in an active floatbox or as an iframe element on the main page.)
+</p><p>
+This example sets a shadow type, animation values and navigation type for all floatbox items on a single page,
+and assigns a couple of overrides for small-screened mobile devices:
+</p>
+<div class="code">&lt;script&gt;
+  fbOptions = {
+    global: {
+      shadowType: 'halo',
+      resizeTime: 0.6,
+      transitionTime: 0.6,
+      overlayFadeTime: 0.2,
+      navType: 'both'
+    },
+    mobile: {
+      shadowType: 'none',
+      navType: 'button'
+    }
+  };
+&lt;/script&gt;
+</div>
+<p>
+The per-page fbOptions object uses the same data structure as seen in the per-site fbOptions.js file,
+enabling use of 'type' and 'className' sections to assign options to certain types or classes on the current page.
+See the fbOptions.js file for syntax and available types.
+</p><p>
+When running floatbox in a hierarchy of iframed pages, the page-specific fbOptions object need to be placed on the top (base) document.
+The settings will apply to content within iframes on the page provided those iframes are sourced from the same domain.
+</p><p>
+For compatibility with prior Floatbox versions, the old fbPageOptions, fbTypeOptions and fbClassOptions will still be picked up if the corresponding section is not found in an fbOptions definition.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="globaloptions" class="section_break"></div>
+<p class="section_title">Setting site-wide options</p>
+<p>
+Global option preferences apply to all pages on a site that are using Floatbox, and are defined in the fbOptions.js file located directly in the Floatbox install folder.
+fbOptions.js does not have to be explicitly fetched by a &lt;script&gt; element. It will be automatically fetched by the Floatbox code.
+(fbOptions.js can be manually appended to floatbox.js to eliminate one network fetch if so desired.
+See the 'Alternate (non-standard) installations' section below in these instructions for more detail.)
+</p><p>
+There are four sections in the fbOptions.js file which allow the targetting of options to subsets of content.
+</p>
+<ul>
+<li>The <b>global</b> section should be self-explanatory: settings here apply site-wide to all Floatboxed items (unless overridden by mobile, type, className, page or item-specific options).</li>
+<li>The <b>mobile</b> section defines overrides to be assigned only to small-screens (generally, less than 8 inches diagonally).</li>
+<li>The <b>type</b> section allows assigning option preferences based on content type.
+See the 'type' section of fbOptions.js for a list of what content type names are recognized.
+<li>The <b>className</b> section is similar to 'type' but assigns settings site-wide to items with a matching class name, including fbTooltip and fbContext classes.</li>
+</ul>
+<p>
+Unlike the 'global' and 'mobile' sections, the 'type' and 'className' sections are heirarchical in the sense that options are not assigned directly to these objects,
+but rather assigned to sub-objects labelled with the type or class names.
+Take a look at fbOptions.js to see this structure in action.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="mobileoptions" class="section_break"></div>
+<p class="section_title">Setting mobile-specific options</p>
+<p>
+It is sometimes desirable to set options differently for small-screened mobile devices than for large-screened tablets and desktops.
+That's where 'mobile' options come into the picture. They define option overrides to be applied to devices with, generally, screens smaller than 8 inches.
+</p><p>
+Mobile options are merged into what could be considered the 'parent' set of options if a small screen is detected, and are ignored for larger-screened devices.
+For example, the 'mobile' section in fbOptions.js gets merged into the 'global' section and removes some clutter from the floatbox frame area along with a couple of other touch-friendly settings.
+</p><p>
+A set of mobile device options can also be assigned as a 'mobile' option sub-set in other contexts, such as className option sets, data-fb-options attributes, and a couple of others.
+An example of assigning a mobile setting based on content type can be found in the fbOptions.js file as follows:
+</p>
+<div class="code">type: {
+  ...
+  pdf: "mobile:`newWindow:true`",
+  ...
+},
+</div>
+<p>
+The above example was set from a string of option definitions. Javascript object syntax can be used instead:
+</p>
+<div class="code">type: {
+  ...
+  pdf: {
+    mobile: {
+      newWindow: true
+    }
+  }
+  ...
+},
+</div>
+<p>
+Individual className option sets can have a 'mobile' section structured very much like the 'pdf' type example above.
+Individual items receive mobile options as a setting in the host link's data-fb-options attribute,
+set using the string syntax (because element attributes are strings) and surrounded by `back-quotes` (or ~tildes~)
+because the option string contains separator characters.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="type" class="section_break"></div>
+<p class="section_title">File &amp; content types</p>
+<p>
+Floatbox determines what kind of content is being requested based on the file extension from a link's href attribute.
+It may sometimes be necessary to over-ride this extension-based determination and specify a content type directly.
+Content type over-ride is always required when loading AJAX
+and can also be needed when a .php or .aspx page is serving images or other non-textual content.
+</p><p>
+By default, .php and .aspx urls will be loaded as iframes.
+To make them load as images, set "type:image" on the link's data-fb-options attribute.
+If fetching AJAX content to be shown in a floatbox, a "type:ajax" over-ride is required in the options to prevent
+that AJAX content from being shown as an iframe.
+</p><p>
+Examples:
+</p>
+<div class="code">&lt;div class="floatbox"&gt;
+  &lt;a href="getPix.php?pic=29" <b>data-fb-options="type:image"</b>&gt;Pic 29&lt;/a&gt;
+  &lt;a href="contact.html" <b>data-fb-options="type:ajax"</b>&gt;Contact Form&lt;/a&gt;
+&lt;/div&gt;
+</div>
+<p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="image" class="section_break"></div>
+<p class="section_title">Images: galleries and slideshows</p>
+<p>
+Floatbox's default behaviour for showing images is to open a single image by itself.
+The easiest way to turn those single-image displays into a multiple-image gallery set
+is to set the 'autoGallery' option to true. This will cause all image links that get lit up
+by Floatbox's default 'activateMedia' setting to group together in a gallery set.
+To exclude a particular image link from the autoGallery set, assign <span class="code">class="nofloatbox"</span> to the link.<br/>
+(See <a href="#captions">captions</a> below for details on setting up captions from title attributes.)
+</p><p>
+Grouping images adds navigation to the floatbox that lets the viewer move through the grouped set using 'previous' and 'next' navigation buttons, keyboard arrow keys, and/or index links.
+(Index links are described below in these instructions.)
+An 'item number' display also becomes available that will show 'image x of y' in the floatbox's frame area.
+See the 'Galleries' section of the Options Reference for option settings that control gallery set behaviours.
+</p><p>
+A gallery set consisting of a subset of image links on a page can be created by assiging an identical 'group' option
+to two or more links (&lt;a&gt; or &lt;area&gt; elements) that have the 'floatbox' class assigned.
+A convenient alternative to assigning the floatbox class and group name to each individual link is to take advantage
+of Floatbox's ability to propagate the 'floatbox' class and option settings from a containing div to the link elements in that div.<br/>
+Here's an example:
+</p>
+<div class="code">&lt;div class="floatbox" data-fb-options="group:1 doSlideshow:true"&gt;
+  &lt;a href="image1.jpg"&gt;&lt;img src="thumb1.jpg"/&gt;&lt;/a&gt;
+  &lt;a href="image2.jpg"&gt;&lt;/a&gt;
+  &lt;a href="image3.jpg"&gt;&lt;/a&gt;
+&lt;/div&gt;
+</div>
+(Note that links used to define gallery set members do not necessarily need clickable content such as a thumbnail image or text.
+The anchor elements can be empty.)
+<p>
+A gallery set can be shown as a slideshow by setting the 'doSlideshow' option to true.
+This will cause the gallery set to auto-advance through the images on an interval set by the 'slideInterval' option.
+See the 'Slideshows' section of the Options Reference for more options that control slideshow behaviour.
+</p>
+<p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="html" class="section_break"></div>
+<p class="section_title">HTML content: iFrames, AJAX, inline DIVs &amp; direct</p>
+<p>
+There are 4 ways to load HTML content into a floatbox: as an iframe, using AJAX, using content from inline hidden DIVs, and using a direct HTML string as the content source.
+Standard link hrefs that aren't recognized or designated as an image or video type will be loaded as iframe content by default.
+</p><p>
+To load an HTML snippet from a separate file using AJAX, set the link's href to reference the AJAX source URL and put "type:ajax" in the link's data-fb-options attribute.
+To load content from an inline div, give that div a unique id and reference that id in the link's href attribute preceeded by "#" (e.g., href="#myDiv").
+A string of direct HTML can be used as the source parameter to the fb.start() API function.
+Direct HTML content must include at least one each of '&lt;' and '&gt;' to be recognized as HTML content.
+As an example, a plain text tooltip source would need to include a wrapping element, such as <span class="code">&lt;p&gt;Eat a Peach&lt;/p&gt;</span>.
+</p><p>
+Floatbox's default content type is iframe content.
+Load a page as an iframe in a floatbox simply by setting the anchor's href to the source path of that page.
+If a URI that points to an iframe content source page includes a #hash id value, the iframe page will scroll to the element that has that id assigned when opened in a floatbox.
+</p><p>
+There's lots of useful options that can be assigned to floatboxed HTML content.
+Please look through the <a href="options.html">options reference</a> to get an idea of what's available.
+Good ones to be aware of are 'width', 'contentScroll', 'contentBackgroundColor', 'autoFit', 'showNewWindow', 'showPrint', and the '*Pos' positioning settings.
+It's also worthwhile to check out the 'Let Floatbox set content height' section further down in these instructions.
+</p><p>
+iframe:
+</p>
+<div class="code">&lt;a href="mypage.html" class="floatbox"
+data-fb-options="width:400 height:530 contentScroll:false" &gt;
+  Iframe page
+&lt;/a&gt;
+</div>
+<p>
+ajax:
+</p>
+<div class="code">&lt;a href="myajaxpage.html" class="floatbox"
+data-fb-options="type:ajax width:400" &gt;
+  AJAX page
+&lt;/a&gt;
+</div>
+<p>
+inline div:
+</p>
+<div class="code">&lt;a href="#divID" class="floatbox"&gt;Div content&lt;/a&gt;
+</div>
+<p>
+direct HTML in an API call:
+</p>
+<div class="code">fb.start( '&lt;span&gt;Eat a Peach&lt;/span&gt;', 'width:150 showPrint:true' );
+</div>
+<p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="video" class="section_break"></div>
+<p class="section_title">Video: HTML5 player, YouTube &amp; Vimeo</p>
+<p>
+Video presentation is a core strength of Floatbox, offering easy setup, an intuitive interface,
+functionality on a broad range of desktop and mobile browsers, and auto-starting and ending of videos on devices that support that.
+Videos can be added to gallery sets for display of a series of videos, including slideshow capability to auto-advance through the series as each video reaches its end.
+</p>
+<p class="p_title">HTML5 video player</p>
+<p>
+Floatbox's integrated HTML5 video player provides a great way to deploy and view locally served video.
+Steps to setup HTML5 video display in Floatbox:
+</p>
+<ul>
+<li>Place an H.264 encoded .mp4 file in a folder.</li>
+<li>Add a .jpg file of the same name as the .mp4 file into the same folder.
+This will be used as the video 'poster' for videos that don't autoplay, as the default 'addVideoThumb' source,
+and as the default 'zoomSource' image when starting from the thumbnail.</li>
+<li>Create a link (&lt;a&gt; element) with an href that points to the .mp4 file.
+It doesn't need a thumbnail in the link as the default 'addVideoThumb' and 'addPlayButton' behaviour will take care of that.</li>
+<li>If the global 'activateMedia' option has been turned off, put a 'floatbox' class name on the link.</li>
+<li>The fbOptions.js file contains a relative height setting for type:video that will set proportional sizing for 16:9 videos.
+Use a different relative height setting for videos with different proportions.
+If desired, add explicit "width" and "height" settings to override the default display sizing.
+'addVideoThumb', 'addPlayButton' and 'zoomSource' can all be disabled in the data-fb-options attribute by setting them to 'null'.</li>
+<li>Make sure the server is configured to serve video files using the correct mime type.
+(It's 2018 now. Most hosts have got this sorted out by now.)
+<span style="font-size: 0.85em;">
+<br/># For example, in Apache's .htaccess file:
+</span>
+<div class="code">AddType video/mp4 .mp4
+AddType video/webm .webm
+</div>
+</li>
+</ul>
+<p>
+There are three control parameters that can be passed to the video player through a query-string on the href's URI path.
+</p>
+<ul>
+<li>"autoend=0" will turn off the default behaviour of closing the floatbox when the video ends.</li>
+<li>"poster=/somePath/someFile.jpg" will set a custom poster image to be used when a video does not auto-start,
+and "poster=null" will prevent the player from looking for the default poster image.
+(Always use absolute path references, not relative, for the poster.)</li>
+<li>"bgcolor=#112233" will override the default transparent background.</li>
+</ul>
+<p>example:</p>
+<div class="code">&lt;a href="/somePath/myVideo.mp4?autoend=0"
+data-fb-options="width:777 height:444 addPlayButton:true" &gt;
+  &lt;img src="/somePath/myThumb.jpg"/&gt;
+&lt;/a&gt;
+</div>
+<p class="p_title">YouTube &amp; Vimeo</p>
+<p>
+Floatbox provides easy presentation and viewing of videos from YouTube and Vimeo on all modern desktop and mobile browsers.<br/>
+Check out the examples (with markup) on the "Video+" tab on <a href="https://floatboxjs.com/demo">the demo page</a>.
+</p><p>
+Here's some pointers on setting things up:
+</p>
+<ul>
+<li>Link to an online video from one of these providers using the URL that is used to view the video on their site.
+For example:
+<ul>
+<li>YouTube: <span class="code">href="http://www.youtube.com/watch?v=4xmV5uHWNag"</span>
+or <span class="code">href="http://youtu.be/4xmV5uHWNag"</span></li>
+<li>Vimeo: <span class="code">href="http://vimeo.com/1211060"</span></li>
+</ul></li>
+<li>Add captions and explicit width and height to the options if settings other than the defaults are desired.
+For Vimeo public videos only, default width, height and caption will be retrieved from the Vimeo service's API.</li>
+<li>The 'addVideoThumb', 'addPlayButton' and 'zoomSource' options are active by default and will take care of those things for you.
+See the Options Reference for details and the demo page for examples.</li>
+</ul>
+<p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="pdf" class="section_break"></div>
+<p class="section_title">PDF &amp; Scribd.com</p>
+<p>
+PDF content is problematic.
+The way Floatbox handles .pdf references is to put them up in an iframe and let the browser sort it out as best it can.
+Many modern browsers will render the PDF document correctly
+but some require that a PDF Reader plugin be installed, which may not be present or may not function well.
+Some browsers will download rather than display PDF documents, and some of these don't even prompt before downloading.
+</p><p>
+When direct-loading PDF, numerous parameters can be specified as a query string following a hash character on the href path.
+The PDF sample on the "HTML" tab of the demo page shows the usage of parameters and opens a document that lists and describes the parameters that are available in most browsers.
+</p><p>
+A better alternative to direct-loading PDF documents is to either convert them to HTML or
+host the documents on scribd.com and load them using the document's /embed/ path from that service.
+The scribd service uses HTML5 iframe embeds to make the docs viewable in almost all browsers, including mobile devices.
+See the scribd example on the "HTML" tab of the <a href="https://floatboxjs.com/demo">Floatbox demo page</a> for details on how to setup the links and to test how the scribd viewer works from different platforms.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="autoheight" class="section_break"></div>
+<p class="section_title">Let Floatbox set content height</p>
+<p>
+Floatbox can measure and set the dimensions for HTML content.
+It's a good idea to let floatbox do this, especially for height, so that the box dimensions will look correct in different browsers.
+There are small variations amongst browsers in the way they layout content which can result in a hard-set height being just right for one browser but too short or too tall for others.
+</p><p>
+The best approach for AJAX, same-domain iframe, inline and direct HTML is to constrain the content's width either by setting a floatbox width option or defining widths in the content's styles,
+and then let Floatbox measure the height. When no height is specified for these HTML content types, the height will be measured and the floatbox size adjusted appropriately.
+Note that the maxWidth option, if specified as a %, is a good way to restrict the size of the content on smallScreen devices.
+</p><p>
+A large majority of Floatbox's HTML measurements are correct, but not all.
+In the rare cases where size detection is wrong, it may be necessary to fiddle with the styling or perhaps surrender completely and assign an explicit height in the options.
+Cross-domain iframe content cannot be measured by script; consequently, box height cannot be automatically matched to content height for cross-domain iframe content.
+Nor can video be measured, but height can be specified as a % of the width (height:xx%w) to maintain correct aspect ratio.
+This is done in fbOptions.js for type:video and sets a default of widescreen 16/9 proportions.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="cycler" class="section_break"></div>
+<p class="section_title">Cycling images and thumbnails</p>
+<p>
+Floatbox includes the ability to display a set of images or thumbnails that will fade, zoom and cycle through each image in succession.
+This can be an effective way to show dynamically changing images, setup a slideshow link or perhaps put a dynamic header at the top of a web page.
+See examples of this under the "Cyclers" tab on the <a href="https://floatboxjs.com/demo">demo page</a>.
+The sample code under those demos are a good way to get started with your own cycle set.
+</p><p>
+Cycler sets can show a 'Ken Burns' style zoom effect on images in between transitions.
+The <b>cycleZoom</b>, <b>cycleEasing</b> and <b>cycleInflection</b> options control this zoom effect, with "cycleZoom:0" disabling it.
+See the Options Reference for more detail.
+</p><p>
+<b>cycleInterval</b> and <b>cycleFadeTime</b> are used to control timings.
+cycleFadeTime controls how quickly the images fade in and out while cycleInterval sets the time an image is displayed before transitioning to the next image.
+cycleInterval includes cycleFadeTime, so if for example they are both set to 3 seconds, the cycler set will be constantly fading over to the next image.
+</p><p>
+A cycler set can be configured to pause and resume on mouse click or touch gesture,
+and to optionally show a small play/pause control over the cycling images.
+Set "<b>cyclePauseOnClick</b>:true" to enable pause and resume on click,
+"<b>cycleShowControls</b>:false" to hide the controls,
+"<b>cycleControlsPos</b>:__" (fill in the blanks) to place the controls at a particular location over the images,
+and "<b>cycleStartPaused</b>:true" to begin the cycler set in the paused state at page load time.
+There is also a <b>cyclePauseOnHover</b> option which applies to mouseover actions only and has no effect on touch devices.
+</p><p>
+CSS can be used to style up the play/pause control and alter the default look.
+Assign the desired styles to ".fbCycler span.fbCyclerControl".
+</p><p>
+The set of images to be cycled goes inside a div with a class of "fbCycler" assigned to that div.<br/>
+<span class="code">&lt;div class=&quot;fbCycler&quot; style=&quot;height:420px;&quot;&gt;</span><br/>
+The 'height' style is needed only if the images in the cycler set vary in height.
+In this case, setting height to the tallest image value prevents unsightly layout changes when new images are shown.
+The optional 'data-fb-options' attribute can be used to assign desired option preferences.
+</p><p>
+The first image in the cycler set is just a normal image element and will be the only one shown if javascript is disabled:
+e.g., <span class="code">&lt;img src=&quot;image1.jpg&quot;/&gt;</span><br/>
+</p><p>
+The other images in the fbCycler div are setup a little differently and will start off hidden by floatbox.css:<br/>
+<span class="code">&lt;img data-fb-src=&quot;image2.jpg&quot;/&gt;</span><br/>
+We can use the data-fb-src attribute to specify the path to the image file, instead of the normal src attribute.
+This is done to speed up page loading.
+If we assigned a src attribute to each of the hidden images, all the images in the set would be loaded at page start time.
+The floatbox code will move the data-fb-src values into the src attribute one at a time as the images are cycled in.
+Where validation of img elements with no src attribute is a concern,
+assign a tiny image like blank.gif as the initial src value.
+</p><p>
+Add a few more images, close the div, and the basic cycle set is finished.
+</p><p>
+Captions can be added to individual images in the cyler set. Without further styling, these captions will be centered below the image.
+When the 'titleAsCaption' option is set to true, which it is by default, the caption can be specified in the img element's title attribute.
+Alternatively, we can set 'altAsCaption' to true and thereby pull the captions from the img element's alt attribute.
+Instead of using either the title or alt attribute for the captions,
+a caption can be assigned by bundling both the img element and a span element that holds the caption text together inside a div. Like this:
+</p>
+<div class="code">&lt;div&gt;
+  &lt;img data-fb-src=&quot;image3.jpg&quot;/&gt;
+  &lt;span&gt;text for image3&lt;/span&gt;
+&lt;/div&gt;
+</div>
+<p>
+The cycling images can be thumbnails within anchor elements marked up for floatbox behaviour,
+giving a nicely integrated floatbox gallery that will open on  thumbnail click.
+Such a set looks similar to the basic cycling image set described above but, instead of putting img elements in the containing div,
+we put anchors in and assign both a 'floatbox' and 'fbCycler' class to the div.
+Like this:
+</p>
+<div class="code">&lt;div class=&quot;fbCycler floatbox&quot; style=&quot;height:100px;&quot;
+data-fb-options=&quot;group:cycle1&quot; &gt;
+  &lt;a href=&quot;image1.jpg&quot;&gt;&lt;img src=&quot;thumb1.jpg&quot;/&gt;&lt;/a&gt;
+  &lt;a href=&quot;image2.jpg&quot;&gt;&lt;img data-fb-src=&quot;thumb2.jpg&quot;/&gt;&lt;/a&gt;
+  &lt;a href=&quot;image3.jpg&quot;&gt;&lt;img data-fb-src=&quot;thumb3.jpg&quot;/&gt;&lt;/a&gt;
+  etc...
+&lt;/div&gt;
+</div>
+<p>
+Notice that all but the first thumbnail img elements are using the "data-fb-src" trick to speed load time.
+</p><p>
+Again, caption text can be added to the cycling thumbnails or images by using the 'title' attribute, the 'alt' attribute,
+or by following the img element with a span element, as descibed above. For example:
+</p>
+<div class="code">&lt;a href=&quot;image4.jpg&quot;&gt;
+  &lt;img data-fb-src=&quot;thumb4.jpg&quot; title=&quot;this is caption 4&quot;/&gt;
+&lt;/a&gt;
+&lt;a href=&quot;image5.jpg&quot;&gt;
+  &lt;img data-fb-src=&quot;thumb5.jpg&quot;/&gt;
+  &lt;span&gt;this is caption 5&lt;/span&gt;
+&lt;/a&gt;
+</div>
+<p>
+The cycleInterval setting is set to one value for all cyclers on a page, and all the cyclers will roll over in unison.
+All the other cycle* settings can be applied per-cycler on pages that host more than one cycler set.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="tooltip" class="section_break"></div>
+<p class="section_title">Enhanced tooltips</p>
+<p>
+Any element on a web page, with the exception of &lt;a&gt; links, can have an enhanced tooltip associated with it by assigning the element a class of "fbTooltip".
+The tooltip shown on mouseover or touch of such an element is a non-modal floatbox which can contain any content type
+and can by styled with all the standard floatbox options.
+</p><p>
+In addition to the fbTooltip class, the host element needs to have a 'data-fb-tooltip' attribute which provides information about the tooltip to be shown.
+The only mandatory entry in data-fb-tooltip is 'source', which points to the source content to be shown as the tooltip.
+Tooltip source content is typical HTML and can come from any of Floatbox's supported HTML content sources:
+a hidden div, an AJAX fetch, an external page loaded as an iframe, or an encoded string of HTML assigned directly to the 'source' option.
+</p><p>
+Tooltips will respond to most of the available Floatbox options that are described in <a href="options.html">the Options Reference</a>.
+Additional options that apply only to tooltips are described in their own section in that reference as well.
+The tooltip-specific options are 'placement', 'showOnce', 'delay', 'arrowColor', and 'arrowSize'.
+</p><p>
+The tooltip options can be specified per element in the data-fb-tooltip attribute,
+per page by being assigned to to the 'fbTooltip' class in the className section of an fbOptions object,
+or site-wide by being assigned to the 'fbTooltip' class in fbOptions.js.
+</p><p>
+There are two reasons why fbTooltips should not be placed on &lt;a&gt; elements:<br />
+- On touch devices the tooltips are shown in response to a finger tap on the host element and the link's response to the tap will conflict with the tooltip's response.<br />
+- In the case of a standard class="floatbox" link, the styling options intended for the tooltip will get applied to the standard floatbox through the class-options mechanism.<br />
+To safely combine a tooltip with a link, place the fbTooltip attributes on an element inside the link's content, such as a &lt;span&gt; or &lt;img&gt; child element.
+</p><p>
+See the "Tooltips+" tab of the demo page for some live examples with markup shown.
+<p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="context" class="section_break"></div>
+<p class="section_title">Context boxes</p>
+<p>
+Context boxes are similar to the enhanced tooltips except they are triggered by a left or right mouse button click.
+They can form an effective replacement for a browser's built-in context menus, can consist of any HTML content, and will respond to mobile device touch gestures as well as mouse interaction.
+</p><p>
+Assign a context box to any element on a page by giving that element a class name of 'fbContext' and adding a 'data-fb-context' attribute that contains at least a 'source' reference.
+The context box's content can come from a source of any type, but an inline hidden div is probably the most common and convenient.<br/>
+For example:
+</p>
+<div class="code">&lt;img class="fbContext" data-fb-context="source:#context1" src="pic1.jpg"/&gt;
+</div>
+<span style="font-size: .85em;">(It doesn't have to be an img element. Any element type can host a context box.)</span>
+<p>
+Context boxes will accept and respond to most standard floatbox options (including 'contentClickCloses').
+Assign option preferences in the 'data-fb-context' attribute, or in the usual per-page or global manner.
+Options can be assigned to the 'fbContext' class in the className section of fbOptions.js
+or in the corresponding section of an fbOptions definition on the host page.
+</p><p>
+The only option that is specific to context boxes is <b>contextMouseButton</b>, which can be set to 'both' (the default), 'left', or 'right' and controls which buttons activate the context box.
+Please be aware that right-clicking is problematic in some browsers and will not work everywhere.
+Many browsers have an advanced configuration setting that individual users can set to either make their browser always show the context menu or to ignore right-click mouse actions altogether.
+It is recommended that contentMouseButton not be set to 'right' outside of environments that don't have control of all the browsers being used.
+</p><p>
+Examples are on the "Tooltips+" tab of the demo page.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="popup" class="section_break"></div>
+<p class="section_title">Popup thumbnails</p>
+<p>
+"Popup" thumbnails or images can be attached to a anchor (link) element and will start off invisible, but show on mouse-over or a touch on the anchor element's content.
+There are 5 classes that can be assigned to a link to give its contained img element popup behaviour:
+"fbPopup", "fbPopdown", "fbPopleft", "fbPopright" and "fbPopcenter".
+These classes determine where, in relation to the host link, the popped up image will appear.
+</p><p>
+An 'fbPop*' link can also be a standard floatboxed link if both class names are assigned.
+E.g., <span class="code">class="fbPopright floatbox"</span>.
+The hidden thumbnail will appear on mouseover and a floatbox will start from that thumbnail when it, or the host link, is clicked.
+Without a class of "floatbox" assigned, the link will navigate to its href as normal when clicked.
+To have a popup link that neither opens a floatbox nor navigates when clicked, leave the 'floatbox' class off and set the href to
+<span class="code">href="javascript:void 0"</span>.
+</p><p>
+If there are two images in an 'fbPop*' link, the first one will get popup behaviour assigned while the second one will always show as normal.
+Having two thumbnail images can be combined with the 'fbPopcenter' assignment to create a nice expanding thumbnail effect.
+Make the first image in the link a larger version of the second image.
+On mouseover, the thumbnail will appear to expand to the larger size.
+</p><p>
+As might be expected, there's samples to be found in the 'Tooltip+' section of the demo page.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="captions" class="section_break"></div>
+<p class="section_title">Captions</p>
+<p>
+The standard way to show a caption in the floatbox frame area is to set the 'caption' option in a link's data-fb-options attribute.
+When doing this, the caption text usually needs to be wrapped in backquotes (`) so that the options string will be parsed correctly.
+</p><p>
+Two captions can be shown on the same item by assigning the second caption to the 'caption2' option in the same manner as the first one on the 'caption' option.
+</p><p>
+If the 'titleAsCaption' option is set to true (which it is by default) and a caption is not defined,
+the caption will be taken from the host link's title attribute or that of a thumbnail img element in the link.
+Captions can also be taken from the alt attribute of img elements by setting 'altAsCaption' to true.
+Be aware that browsers display a link's title as a tooltip when the user mouses over the link.
+To avoid triggering this browser tooltip, set the caption using the caption option (or the alt attribute) rather than placing it in the title attribute.
+</p><p>
+Here's two examples:
+</p>
+<div class="code">&lt;div class="floatbox"&gt;
+  &lt;a href="boogers1.jpg"
+  data-fb-options="caption:`This is the first caption`
+  caption2:`And this is the second caption`" &gt;
+    boogers!
+  &lt;/a&gt;
+  &lt;a href="boogers2.jpg"
+  title="This is both a tooltip and a caption" &gt;
+    more boogers!
+  &lt;/a&gt;
+&lt;/div&gt;
+</div>
+<p>
+Floatbox captions can be built from, or contain, HTML elements.
+There's two ways to get HTML into captions.
+The first is to put the caption's HTML inside a hidden div on the page and reference that div by id in the caption option.
+Like this:
+</p>
+<div class="code">&lt;a href="image1.jpg" <b>data-fb-options="caption:#myCaptionDiv"</b>&gt;...&lt;/a&gt;
+...
+&lt;div id=&quot;myCaptionDiv&quot; style=&quot;display:none;&quot;&gt;
+  &lt;span style=&quot;color:#123456;&quot;&gt;
+    Here's an HTML caption with &lt;a href=&quot;//example.com&quot;&gt;a link&lt;/a&gt;
+  &lt;/span&gt;
+&lt;/div&gt;
+</div>
+<p>
+The second way is to assign the HTML caption directly in data-fb-options.
+When assigned directly to the caption option all HTML entity characters (&amp; &quot; &lt; &gt;) will need to be encoded (&amp;amp; &amp;quot; &amp;lt; &amp;gt;) so that browsers can correctly parse the page.
+This can get messy and can be harder to get right than the hidden div approach.
+For example, the same caption assigned in the hidden div above looks like this when encoded and placed directly in the options:
+</p>
+<div class="code" style="white-space:normal">&lt;a href="image1.jpg" <b>data-fb-options="caption:`&amp;lt;span style=&amp;quot;color:#123456;&amp;quot;&amp;gt;Here's an HTML caption with &amp;lt;a href=&amp;quot;//example.com&amp;quot;&amp;gt;a link&amp;lt;/a&amp;gt;&amp;lt;/span&amp;gt;`"</b>&gt;...&lt;/a&gt;
+</div>
+(Told you it could get messy.)
+<p>
+If a caption is set to the string "href", the displayed caption will be the value of the filename component of link's href attribute.
+This might be useful when displaying iframed content or to display the filename of the current image.
+</p><p>
+Captions are normally assigned per-item in the data-fb-options attribute (or in fb.start's 'options' parameter).
+They can, however, be set anywhere that options can be assigned and can apply globally, per page, per type, or per class.
+Note that HTML placed directly into a caption defined in any of these locations does not need to be encoded.
+Encoding is only for text in the HTML document that will be parsed by the browser when presenting the page.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="headandfoot" class="section_break"></div>
+<p class="section_title">Header and Footer</p>
+<p>
+The header and footer areas are transparent divs immediately above and below the floatbox frame area.
+These can be used to display content attached to, but outside of the box, such as alternate captions or any HTML.
+One possible use is for branding of the floatbox display, or attaching a company logo.
+See a footer in action in the  "lavish" example the "Options" tab of the <a href="https://floatboxjs.com/demo">demo page</a>.
+</p><p>
+Header and footer can be assigned in exactly the same way as captions, described above - as direct text, encoded HTML, or a reference to a hidden div.
+The names of the options to set are 'header' and 'footer'.
+Pulling header and footer content from a hidden div is probably the most common and trouble-free approach.  Here's an example:
+</p>
+<div class="code">&lt;a href="somePage.html" <b>data-fb-options="header:#myHeaderDiv"</b>&gt;...&lt;/a&gt;
+</div>
+<p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="outerclose" class="section_break"></div>
+<p class="section_title">Alternate Close button</p>
+<p>
+The traditional Floatbox close button is displayed in the frame, with or without text (see the 'showControlsText' option).
+An alternate close button is available. It's not shown by default, but is used in some of the builtin className option sets.
+This close button is a round disc with an 'X' in it and is displayed at the top right or top left corner of the floatbox.
+</p><p>
+To enable the outerClose button, set <b>showOuterClose</b> to true.
+Place the button in either of the top corners of the floatbox by setting <b>outerClosePos</b> to 'tr' or 'tl' (default is 'tr').
+To always use the outerClose button and not the traditional close button in the floatbox frame area,
+set both 'showClose:false' and 'showOuterClose:true' in the global section of fbOptions.js.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="classoptions" class="section_break"></div>
+<p class="section_title">Built-in class options</p>
+<p>
+Options assigned to class names are a great way to define a re-usable set of options for multiple floatboxed links.
+There are four pre-defined className option sets defined in the fbOptions.js file which can be used to easily assign alternate appearance to a floatbox.
+</p>
+<ul>
+<li><b>modern</b> - Sets a crisp white and grey frame area with square corners and all controls and text along a top band.</li>
+<li><b>transparent</b> - Good for presentation of transparent images or tooltip content.</li>
+<li><b>naked</b> - Will show a plain image or other content with an outer-close button and drop shadow, but no other decoration or floatbox frame area.</li>
+<li><b>fbInfo</b> - Applies to secondary floatboxes opened from an Info... link (created with the 'info' option).</li>
+</ul>
+<p>
+Use these pre-defined class options by assigning the class name to the floatboxed link they should apply to or to a containing element that has the floatbox class on it.
+The class names can also be passed into an API fb.start call by assigning them to the 'className' option in fb.start's second options parameter.<br/>
+E.g., <span class="code">&lt;a class="naked floatbox" href=...</span> or <span class="code">fb.start( 'somePage.html', 'className:modern' )</span>
+</p><p>
+Of course, the className options as presented in the fbOptions.js file can be tweaked and modified or used as the starting point for another set of options.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="info" class="section_break"></div>
+<p class="section_title">Info box for secondary content</p>
+<p>
+There are occasions when it is helpful to display additional information about floatbox content.
+For photogrpahs, this might be descriptive text, EXIF information or a popup location map.
+Forms or other HTML content may have associated help or other information that can be effectively presented in a second floatbox.
+Floatbox's info box capability addresses this usage.
+When enabled, a link will appear in the lower left of the floatbox frame which activates the information box.
+</p><p>
+There are four options that can be set in a link's data-fb-options attribute to enable and configure the info box.
+</p>
+<ul>
+<li><b>info</b>: Assigns the url that points to the information source. E.g.,
+<span class="code">info:myInfoPage.html</span> or <span class="code">info:#myInfoDiv</span></li>
+<li><b>infoOptions</b>: Sets floatbox options for the secondary info box. E.g.,
+<span class="code">infoOptions:`colorTheme:white width:400 height:300`</span>
+(The backquotes are required to enable correct parsing.)</li>
+<li><b>infoText</b>: Provides the text that will be displayed in the info link in the floatbox frame area.
+If not set, the default text displayed will be "Info..." or its localized language equivalent. E.g.,
+<span class="code">infoText:`EXIF data...`</span></li>
+<li><b>infoLinkPos</b>: Positions the info link within floatbox border area. E.g.,
+<span class="code">infoLinkPos:bl</span>
+</ul>
+<p>
+A link with an associated info box could look like this:
+</p>
+<div class="code">&lt;a href="myPhoto.jpg" class="floatbox"
+data-fb-options="info:#myInfoDiv
+infoOptions:`colorTheme:white width:400 height:300`" &gt;
+  click here
+&lt;/a&gt;
+</div>
+<p>
+Yes, there's an example in the demo page's 'Options' section.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="print" class="section_break"></div>
+<p class="section_title">Print contents</p>
+<p>
+If '<b>showPrint</b>:true' is set in a floatboxed link's data-fb-options attribute, a "Print..." link will be shown in the floatbox border area.
+When clicked, this link will invoke a second browser instance that will display just the contents of the floatbox window and will show the print dialog for this new browser instance.
+The contents that will be printed will be just that from the floatbox display, not the surrounding eye candy and not the host page content.
+Use the <b>printLinkPos</b> option to control where in the floatbox border the "Print..." link will appear.
+Set <b>printText</b> to change the displayed "Print..." link to any other desired text.
+</p><p>
+The <b>printCSS</b> option can be used to add CSS styling to the print window contents.
+If printCSS is a URL path to a .css file, that css file will be attached to the print window.
+Alternatively, CSS assignments can be specified directly in printCSS as a string surrounded by backquotes.
+For example: <span class="code">data-fb-options="showPrint:true printCSS:/css/print.css"</span>
+or <span class="code">data-fb-options="showPrint:true printCSS:`p {font-size: 11px;} etc...`"</span>.
+</p><p>
+The print window does its best to import styles from the original page and so it's not normally necessary to add specific printing CSS,
+but the capability is there if needed.
+</p><p>
+Floatbox's default 'mobile' options sets 'showPrint' to false for small-screen devices because these devices typcially can't print.
+Also, cross-domain iframes (iframe content coming from a different domain) cannot be manipulated, hence cannot be printed,
+and the "Print..." option will not be displayed.
+</p><p>
+As usual, see the demo page ('Options' section) for an example.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="newwindow" class="section_break"></div>
+<p class="section_title">Open in a new window</p>
+<p>
+There may be content or circumstances where it is helpful to offer site visitors a way to open the current floatbox content in its own new window or tab.
+Do this by setting <b>showNewWindow</b> to true in a link's option string (data-fb-options attribute), or perhaps in className settings assigned to various items.
+This will place a link in the floatbox frame that can be clicked to open the current content in a new window.
+</p><p>
+The string displayed in the new window link is localized in the language files and will be shown in the active page's language.
+The option <b>closeOnNewWindow</b> (false by default) will cause the current floatbox to end when the new-window link is clicked.
+</p>
+
+<div id="indexlinks" class="section_break"></div>
+<p class="section_title">Index links in a gallery set</p>
+<p>
+Galleries of multiple images (or other content) can have a series of simple numbered links shown in the floatbox border area.
+If there are thumbnails associated with linked images, these thumbnails will be displayed as small popups when the numbered link is hovered with the mouse.
+</p><p>
+Primary control over the display of index links is done with the <b>numIndexLinks</b> option.  If this is zero, index links will not be shown.
+If it is -1, there is no limit on the number of index links shown - there will be a link for each image in the gallery group.
+Any positive integer and the number of links shown will be limited to this amount (avoiding a huge list of numbered links for a gallery set of 479 pictures).
+</p><p>
+In addition to numIndexLinks, four other options affect index links.
+</p>
+<ul>
+<li><b>showIndexThumbs</b>, when set to false, turns off the thumbnail popups within the index links.</li>
+<li><b>maxIndexThumbSize</b> scales down large thumbnail popups in the index links so that their largest side does not exceed the given size.</li>
+<li><b>indexThumbSource</b> is a URL reference of a thumbnail image to be used in preference to the default one in the link on the main page.
+Assign 'href' to use the host link's linked image, but you probably want to use 'maxIndexThumbSize' when doing this.</li>
+<li><b>indexPos</b> sets the location of the index links within the floatbox frame area.
+(See the "Layout" section of these instructions for details.)</li>
+</ul>
+<p>
+Index links can be seen in action in the 'Images' section of the demo page.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="navigation" class="section_break"></div>
+<p class="section_title">Navigation and controls</p>
+<p>
+Floatbox includes controls for moving to previous and next items in a group, resizing, playing and pausing a slideshow, and ending the floatbox presentation.
+These controls consist of embedded SVG graphics and may optionally include text labels localized to the current page's language.
+(See <b>showControlsText</b> in the Options Reference.)
+</p><p>
+There are two sets of previous/next controls for grouped items.
+'Overlay' navigation displays a small graphics on top of the displayed image when the mouse is over the left or right side of the image.
+'Button' navigation displays a clickable <span class="code">&lt;&lt; prev || next &gt;&gt;</span> graphic, with or without text, in the box frame outside of the content.
+The <b>navType</b> options is used to specify either or both of these navigation controls.
+Most people will find that Floatbox makes pretty good choices about when to show which type of navigation, and that navType doesn't normally need to be fiddled with.
+</p><p>
+When the floatbox content has been shrunk from its native size to fit the screen, or when it is displayed larger than the current screen size,
+a resize control will be displayed which can be used to toggle the item's size.
+The <b>resizeTool</b> option controls whether the resize control will be a custom maginfying-glass cursor or a small graphic in the top left corner.
+If the custom cursor is used and overlay navigation is enabled, click-resizing is active only in the space between the two upper navigation areas.
+</p><p>
+When enableKeyboardNav is set to true, the following keys can be used in place of mouse-clicking the controls:
+</p>
+<ul>
+<li>Close: <span class="code">Esc</span></li>
+<li>Previous item in a group: <span class="code">left arrow</span></li>
+<li>Next item in a group: <span class="code">right arrow</span></li>
+<li>Toggle play and pause: <span class="code">spacebar</span></li>
+<li>Resize item: <span class="code">Tab</span></li>
+</ul>
+<p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="layout" class="section_break"></div>
+<p class="section_title">Layout</p>
+<p>
+There are many things that can appear inside the floatbox frame area:
+the two captions, an info link, print link, new-window link, item number for gallery sets, index links, the close button and navigation controls.
+Placement of these items can be specified with the *pos options:
+<b>captionPos</b>, <b>caption2Pos</b>, <b>infoLinkPos</b>, <b>printLinkPos</b>, <b>newWindowLinkPos</b>, <b>itemNumberPos</b>, <b>indexPos</b> and <b>controlsPos</b>.
+The available positions are 'tl', 'tc', 'tr', 'bl', 'bc', and 'br' corresponding to top-left, top-center, bottom-right, etc.<br/>
+The 'tc' and 'bc' positions are not guaranteed to be truly centered.
+See <b>strictCentering</b> in the Options Reference for details.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="appearance" class="section_break"></div>
+<p class="section_title">Appearance and Colors</p>
+<p>
+Many of Floatbox's options are for configuring the floatbox's appearance.
+Colors of various components, round corners, border sizes, display of controls, shadow effect, transparencies and various animation effects are controlled through configuration options.
+See the <a href="options.html">options reference</a> for details on the use of these (and other) options.
+</p><p>
+Floatbox has 6 pre-configured color themes: white, black, blue, silver, red and yellow.
+When no <b>colorTheme</b> option is specified, Floatbox defaults to black for images, silver for HTML content, and blue for video.
+The colorTheme option can be set globally, per page, or per item, and assigned to specific classNames or content types, to override the per-type defaults.
+</p><p>
+Colors of various Floatbox components can be specified directly using color options.
+In addition to colorTheme, the following are available:
+<b>boxColor</b>, <b>overlayColor</b>, <b>innerBorderColor</b>, <b>outerBorderColor</b>, <b>textColor</b>, <b>strongTextColor</b>, <b>contentBackgroundColor</b> and <b>arrowColor</b>.
+</p><p>
+'strongTextColor' sets the caption color and the highlighted color of the other text items and controls when they are mouse-hovered.
+'contentBackgroundColor' sets the background color inside the floatbox content area and is useful if the displayed content has transparent areas.
+'arrowColor' is used exclusively by enhanced tooltips for their little pointer arrows.
+</p><p>
+The floatbox frame area can be shown with a color gradient effect by assigning two css colors, separated by '|', to to the boxColor option.
+For example: <span class="code">boxColor:#123456|#edca98</span>
+</p><p>
+Setting customized colors through options is best done by assigning the options to a className entry fbOptions and placing that class name on the floatboxed links.
+See the Instruction sections on setting page-specific and site-wide options for details.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="language" class="section_break"></div>
+<p class="section_title">Language localization</p>
+<p>
+Floatbox includes language localization files for 40 languages.
+The strings in these files are used as text labels on the various controls,
+tooltiped keyboard hints on those controls,
+the "image x of y" display, the text displayed on "Info..", "Print..." and showNewWindow links,
+and the strings shown when a required multimedia plugin is not present.
+If an explicit <b>language</b> is not set in the options, Floatbox will attempt to use the language specified in the 'lang' attribute of the &lt;HTML&gt; element
+and will default to English if nothing usable is found there.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="auto" class="section_break"></div>
+<p class="section_title">Auto-start and exit tasks</p>
+<p>
+A floatbox can be automagically started directly at page load time by using the <b>autoStart</b> option.
+Put 'autoStart:true' into the data-fb-options attribute of the floatbox-enabled item to be shown at startup.
+As soon as the page loads, floatbox will start with this item displayed.
+Setting 'autoStart:once' will load the requested item only on the first page load of the current browser session.
+Doing this sets a session cookie when the item is first shown and that item will not be auto-shown again as long as that session cookie is present.
+Set <b>autoDelay</b> to a number of seconds to make Floatbox wait that long after page load before auto-starting the floatbox.
+</p><p>
+Auto-starting can also be invoked with an 'autoStart' query string entry on the URL used to invoke the page.
+For example, a url of <span class="code">"//example.com/mypage.html?autoStart=myimage.jpg"</span>
+will auto-start myimage.jpg provided there is a link on the page that is setup for floatbox and that has that image as its href value.
+Note that the query string value only has to match any sub-string of the link's href.
+For example, "?autoStart=myimage" would match an href of "/images/this_is_myimage.jpg".
+</p><p>
+Floatbox can automatically load or reload a web page in the browser when it exits.
+The <b>loadPageOnClose</b> option is used to make this happen.
+Set loadPageOnClose to the string 'self' to refresh the host page on exit.
+This can be useful if the floatboxed content has modified some back-end content and the host page needs to be refreshed to reflect the changes.
+If loadPageOnClose is set to the string 'back', the previous page in the browser's history list will be loaded.
+This is used in the APOD slideshow on the demo page.
+If loadPageOnClose is neither 'self' nor 'back', it is assumed to be a valid URL and the browser will be instructed to load that page.
+When loadPageOnClose is set to a URL inside an option string, it is often necessary to surround the url with backquotes (`) so as not to break parsing of the option string.
+</p><p>
+When closing floatbox by calling the API <b>fb.end</b> function, the equivalent to loadPageOnClose can be passed directly as an argument to that function like this:
+<span class="code">fb.end( 'somePage.html' )</span>.
+</p><p>
+Be sure to see the API reference for information about the Floatbox callbacks that are available to run custom code on such events as floatbox or item start and end.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="imagemap" class="section_break"></div>
+<p class="section_title">Image map areas</p>
+<p>
+Floatbox can work with <a href="http://en.wikipedia.org/wiki/Image_map">image map areas</a> the same way it does for standard &lt;a&gt; elements.
+To do this, set up the class and options attributes as described above, but for image maps these attributes go on the map's &lt;area&gt; elements.
+There's an example in the 'Images' section of the <a href="https://floatboxjs.com/demo">demo page</a>.
+</p><p>
+In addition to working with image maps on the main page, an image map can be assigned to an image shown in a floatbox.
+The assigned map will scale with the image if it is resized for any reason.
+See the 'useMap' entry in the Options Reference for info on how to set this up.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="dynamic" class="section_break"></div>
+<p class="section_title">Dynamically loading floatbox content via AJAX, script or UpdatePanel</p>
+<p>
+When floatbox first loads on a page, it runs its <b>fb.activate</b> function to inventory all the floatbox-enabled anchors and area maps on the page, and to add the required onclick action to those links.
+It also activates any cycler sets, enhanced tooltips, context boxes, and popup thumbnails defined in the content.
+If new content marked up for floatbox behaviour is dynamically added to a page after its initial load, fb.activate needs to be re-invoked to register that new content and assign the event handlers to the new elements.
+</p><p>
+Floatbox's built in <b>fb.ajax</b> function will automatically run fb.activate against any new content brought in using the fb.ajax function.
+However, a generic AJAX content insertion may be in use - something like this:
+</p>
+<div class="code">if ( xhReq.readyState == 4 ) {
+  document.getElementById( 'myXhrDiv' ).innerHTML = xhReq.responseText;
+}
+</div>
+<p>
+Light up the floatbox links in that dynamic content by adding the following line after the content insertion:
+</p>
+<div class="code">if ( xhReq.readyState == 4 ) {
+  document.getElementById( 'myXhrDiv' ).innerHTML = xhReq.responseText;
+  fb.activate();
+}
+</div>
+<p>
+This clears the existing inventory of linked content and then re-inventories the entire document, including the freshly added new content,
+and 'lighting up' the newly added links.
+</p><p>
+A jQuery AJAX fetch which launches fb.activate on completion could look like this:
+<div class="code">$.get( 'someURL.php', function ( data ) {
+  $( '#myXhrDiv' ).html( data );
+  fb.activate();
+});
+</div>
+<p>
+The simplest AJAX approach is to use floatbox's built-in ajax function and get fb.activate executed for free.
+</p>
+<div class="code">fb.ajax( { source:'someURL.php', $:'myXhrDiv' } );
+</div>
+<p>
+For an ASP.NET UpdatePanel, a callback function may be set to fire the floatbox activation after the panel has finished updating.
+Like this...
+</p>
+<div class="code">function pageLoad ( sender, args ) {
+  if ( args.get_isPartialLoad() ) {
+    fb.activate();
+  }
+}
+</div>
+<p>
+Or... as an alternative to getting the fb.activate function to fire at the right time,
+the new links could be setup with their own onclick action instead of giving them a class of "floatbox".
+For example, the following link will fire up in floatbox when clicked without needing to be activated:
+</p>
+<div class="code">&lt;a href="somePage.html" onclick="fb.start(this); return false;"&gt;do it&lt;/a&gt;
+</div>
+<p>
+Options can be added to the above sample anchor in the usual way by adding the desired data-fb-options attribute settings.
+The options can be passed in as a second string parameter to the fb.start function as well - see the API Reference for details.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="loading" class="section_break"></div>
+<p class="section_title">Page interaction while loading</p>
+<p>
+Slow-loading pages may present an opportunity for the user to click on links early while the page is still loading
+and before Floatbox activation has assigned its click handlers. Thus the user can inadvertently navigate away from the page.
+</p><p>
+This early navigation can be prevented by placing the floatbox.js include line in the &lt;head&gt; of the document (not down at the end of the &lt;body&gt;).
+When floatbox.js loads, it temporarily places a 'floatbox' class name on the &lt;html&gt; element.
+At the bottom of floatbox.css there is a line which disables pointer events on floatboxed links while that html class name is present.
+When the document is ready and Floatbox can proceed with its activation, the 'floatbox' class name is removed from the &lt;html&gt; element
+and pointer events become available.
+</p><p>
+There may be links that don't use the 'floatbox' class but that should nonetheless ignore pointer events until the page is ready.
+These links could be for media that will be auto-activated due to Floatbox's 'activateMedia' option, or other links not related to Floatbox.
+To disable all links on the page during loading, change that pointer rule in floatbox.css to <span class="code">html.floatbox a { pointer-events: none }</span>.
+To allow all links during loading, simply remove that entire pointer-events rule from the floatbox.css file.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="upgrade" class="section_break"></div>
+<p class="section_title">Upgrading</p>
+<p>
+Upgrading Floatbox is often done by simply dropping the new floatbox files into the old 'floatbox' folder.
+Professional sites generally worry about stale files in browser caches
+and will often modify paths or URL query strings in source documents.
+Floatbox has no special requirements and whatever you use to manage version upgrades of your site's
+other .css and .js files will apply to the Floatbox files as well.
+</p><p>
+If upgrading a minor version release but within the same major version family,
+the previous fbOptions.js file can usually be copied into the new folder
+as a way of retaining any customized settings from the prior install.<br/>
+Safely upgrading to a new major version entails manually editing the new fbOptions.js file
+and prior fbOptions should not be carried over into new major version installs.<br/>
+For example, everyone deploying version 8.x should start fresh with the fbOptions.js from the floatbox_8xx.zip file.
+</p><p>
+It's also prudent to check the <a href="https://floatboxjs.com/download">change-log</a>
+for any option, markup or API changes that may affect existing content.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="central" class="section_break"></div>
+<p class="section_title">Serving a single Floatbox install to multiple web sites</p>
+<p>
+If running Floatbox on multiple sites, having each of those sites load the Floatbox files from a single instance
+installed on one site is a great way to simplify installation, configuration, upgrading and life.
+</p><p>
+There are no special requirements needed for fetching Floatbox from a foreign (external) server.
+Previous Floatbox versions used icon fonts and serving fonts cross-domain required the application
+of CORS headers to the font delivery files.  The icon fonts are gone, having been replaced with embedded SVG graphics,
+and so serving a single-instance of Floatbox is now quite simple.
+</p><p>
+It is recommended that you use an SSL/HTTPS source to ensure delivery.
+The include lines to put on each of the client site pages would look something like this:<br/>
+<span class="code">&lt;link rel="stylesheet" href="https://example.com/floatbox/floatbox.css" /&gt;</span><br/>
+<span class="code">&lt;script src="https://example.com/floatbox/floatbox.js"&gt;&lt;/script&gt;</span>
+</p><p>
+It is also recommended that access restrictions be placed on the centrally-served files
+to prevent the whole world hot-linking in and leeching your files and bandwidth.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="wordpress" class="section_break"></div>
+<p class="section_title">WordPress integration</p>
+<p>
+Floatbox works the same on WordPress (and other templating systems) as it does on standard HTML pages.
+It needs the include lines to floatbox.js and floatbox.css on the page, and then away you go.
+The quick and easy way to do this would be to drop the floatbox include lines into the active theme's header.php file.
+But the problem with the quick and easy approach is that the header.php file may get overwritten with a theme version upgrade
+- especially problematic for auto-updating themes.
+</p><p>
+A more robust approach - and the one sanctioned by the WordPress folks - is to create a
+<a href="https://codex.wordpress.org/Child_Themes" target="_blank">WordPress child theme</a>
+which adds Floatbox without modifying any theme files.
+</p><p>
+The minimal requirements for a child theme are two files, functions.php and style.css, in a sub-folder under the 'wp-content/themes/' folder.
+The 'style.css' file needs a commented header section which describes the child theme to the WordPress admin pages, but it doesn't need any actual css rules.
+Here's a sample style.css file which connects to the WordPress 'twentysixteen' theme
+(modify the theme template name to the one you wish to use):
+</p>
+<div class="code">/*
+Theme Name: Floatbox_child
+Description: Adds Floatbox to an active WordPress theme.
+Author: admin
+Version: 8.1.0
+Template: twentysixteen
+*/
+</div>
+<p>
+The 'functions.php' file contains the code which adds floatbox.js and floatbox.css to your theme's pages
+(modify the $fb_root paths to point to your Floatbox install):
+</p>
+<div class="code">&lt;?php
+
+// include floatbox.js and floatbox.css
+function get_floatbox() {
+	$this_site_root = '//' . parse_url( site_url() )[ 'host' ];
+	$fb_root = $this_site_root . '/floatbox/';
+	// could instead use a foreign domain to host floatbox if desired
+	// $fb_root = 'https://example.com/floatbox/';
+
+    wp_enqueue_script(
+        'floatbox',
+        $fb_root . 'floatbox.js',
+        array(),
+        '8.1.0',  // cache control
+        true
+    );
+
+    wp_enqueue_style(
+        'floatbox',
+        $fb_root . 'floatbox.css',
+        array(),
+        '8.1.0',  // cache control
+        'all'
+    );
+}
+add_action( 'wp_enqueue_scripts', 'get_floatbox' );
+
+// Need to enqueue parent and/or child theme style.css
+// only if there are active style rules in those files.
+function enqueue_theme_styles() {
+    wp_enqueue_style( 'parent-style',
+        get_template_directory_uri() . '/style.css'
+    );
+    wp_enqueue_style( 'child-style',
+        get_stylesheet_directory_uri() . '/style.css',
+        array( 'parent-style' ),
+        wp_get_theme()->get( 'Version' )
+    );
+}
+add_action( 'wp_enqueue_scripts', 'enqueue_theme_styles' );
+
+?&gt;
+</div>
+<p>
+Use the WordPress admin pages to make the new child theme active.
+Floatbox's default 'activateMedia' functionality will now show all image and video links as floatbox content.
+You probably want to set 'autoGallery' to true in the floatbox fbOptions.js file to make all the auto-activated
+images open as single grouped gallery set instead of single images.
+Put title attributes on your image links to have these show up as floatbox captions.
+</p><p>
+To show other content types, or to setup cyclers, tooltips, context boxes and popup thumbs,
+or to add data-fb-options to some links, modify the page's HTML directly in the WordPress editor
+using the "Text (HTML)" view or tab.
+And of course, if you're going beyond the basic defaults, you probably want to update floatbox/fbOptions.js.
+For bonus points, figure out how to put an fbOptions script object directly in the child-theme functions.php file.<br/>
+Oh yeah... and have fun.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="alternate" class="section_break"></div>
+<p class="section_title">Alternate (non-standard) installations</p>
+<p>
+The Floatbox script is normally attached up to a web page with a &lt;script&gt; element
+and floatbox.js will take care of loading its supporting files: fbOptions.js and core.js.
+It is possible to combine the three files into one, thereby reducing the number of network fetches.
+However, appending core.js to floatbox.js will typically slow-down the initial page load a little bit
+because the core code will be fetched inline with the document instead of lazy-loading after the document is ready.
+</p><p>
+There is a slight optimization gain to be had by appending fbOptions.js to floatbox.js.
+If going to the trouble of doing this, it makes sense to first make fbOptions.js as small as possible.
+Set all the option preferences in fbOptions.js as desired,
+remove any 'className' option sections not in use on the site,
+minify fbOptions with a tool such as http://skalman.github.io/UglifyJS-online/
+and append the resultant minified code to the bottom of the floatbox.js file.
+</p><p>
+Floatbox can also be loaded outside of the normal &lt;script&gt; element inclusion.
+Some site consolidation and optimization systems will possibly rename floatbox.js and merge it into other scripts on the page.
+Or, some other javascript on the page may want to fetch floatbox after the page is up and running.
+This can cause a problem for Floatbox as it may interfere with its ability to find its home directory
+from which it will load resources like the language files or the video player.
+</p><p>
+The loading of Floatbox in such non-standard ways can be assisted by placing a couple of properties
+on a <b>fbOptions</b> object prior to initiating the floatbox.js fetch.<br/>
+Help Floatbox find its resources by setting fbOptions<b>.scriptPath</b> to the full path of the unmolested floatbox.js file.<br/>
+An optional fbOptions<b>.ready</b> property accepts an array of functions to be fired after floatbox is fully loaded.
+</p><p>
+A good example of this use of fbOptions can be found at the end of the script element in 'floatbox/resources/video.html'.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div id="library" class="section_break"></div>
+<p class="section_title">Using the library functions</p>
+<p>
+Floatbox exposes an API to many of its internal functions that allows it to be used as an effective javascript library in contexts beyond the base Floatbox functionality.
+In many cases, you can avoid loading other libraries such as jquery or mootools and instead use the Floatbox calls that are already loaded on your page.
+The Floatbox library includes a simple to use, robust and flexible AJAX utility, event handling, CSS selector interface, lazy-load page bootstrapper, animations, form processing, an image preloader, some helpful DOM manipulation routines, and more.
+For a complete list of available Floatbox functions, please see the <a href="api.html">API reference</a>.
+</p><p>
+<a href="#index">Back to Index</a>
+</p>
+
+<div class="section_break"></div>
+
+</div>
+</body>
+</html>

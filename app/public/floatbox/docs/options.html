@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>Options Reference - Floatbox</title>
+<link href="docs.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="content">
+
+<p class="page_title">Floatbox - Options Reference</p>
+<a href="https://floatboxjs.com/" style="display:block; margin-top:-1em;">floatboxjs.com</a>
+
+<p>
+Floatbox provides versatility in how it can be configured and used through numerous configuration options and a variety of ways and locations to set those options.
+This document gives information about the configuration options.
+See <a href="instructions.html">the instructions</a> for information on how these options can be configured globally, with page-specific settings,
+assigned to only small-screened mobile devices, and targeted to specific classes, content types or individual items.
+</p>
+
+<div id="index">
+<div class="section_break"></div>
+
+<p class="section_title">Index (and quick-reference)</p>
+
+<ul class="index">
+<li><a href="#appearance">Appearance</a>
+<ul>
+<li><a href="#boxCornerRadius">boxCornerRadius - pixels (10)</a></li>
+<li><a href="#contentCornerRadius">contentCornerRadius - pixels (0)</a></li>
+<li><a href="#shadowType">shadowType - <i>'drop'</i> | 'hybrid' | 'halo' | 'none'</a></li>
+<li><a href="#shadowSize">shadowSize - pixels (12)</a></li>
+<li><a href="#shadowOpacity">shadowOpacity - 0-1 (0.4)</a></li>
+<li><a href="#outerBorder">outerBorder - pixels (1)</a></li>
+<li><a href="#innerBorder">innerBorder - pixels (1)</a></li>
+<li><a href="#padding">padding - pixels (20)</a></li>
+<li><a href="#panelPadding">panelPadding - pixels (6)</a></li>
+<li><a href="#overlayOpacity">overlayOpacity - 0-1 (0.55)</a></li>
+</ul>
+</li>
+
+<li><a href="#animations">Animations</a>
+<ul>
+<li><a href="#doAnimations">doAnimations - <i>true</i> | false</a></li>
+<li><a href="#overlayFadeTime">overlayFadeTime - seconds (0.4)</a></li>
+<li><a href="#resizeTime">resizeTime - seconds (0.7)</a></li>
+<li><a href="#fadeTime">fadeTime - seconds (0.4)</a></li>
+<li><a href="#startAt">startAt - id | null</a></li>
+<li><a href="#endAt">endAt - 'start' | id | null</a></li>
+<li><a href="#zoomSource">zoomSource - img filePath | null</a></li>
+<li><a href="#zoomBorder">zoomBorder - pixels (1)</a></li>
+<li><a href="#splitResize">splitResize - true | <i>false</i></a></li>
+<li><a href="#easing">easing - 1-4 (2.5)</a></li>
+<li><a href="#inflection">inflection - 0-1 (0.5)</a></li>
+<li><a href="#animationTime">animationTime - seconds (1)</a></li>
+</ul>
+</li>
+
+<li><a href="#colors">Colors</a>
+<ul>
+<li><a href="#colorTheme">colorTheme - 'black' | 'blue' | 'silver' | 'white' | 'yellow' | 'red'</a></li>
+<li><a href="#boxColor">boxColor - css color [|css color]</a></li>
+<li><a href="#Color">overlayColor - css color</a></li>
+<li><a href="#Color">innerBorderColor - css color</a></li>
+<li><a href="#Color">outerBorderColor - css color</a></li>
+<li><a href="#textColor">textColor - css color</a></li>
+<li><a href="#textColor">strongTextColor - css color</a></li>
+<li><a href="#contentBackgroundColor">contentBackgroundColor - css color</a></li>
+<li><a href="#boxBackgroundImage">boxBackgroundImage - img filePath</a></li>
+<li><a href="#overlayBackgroundImage">overlayBackgroundImage - img filePath</a></li>
+</ul>
+</li>
+
+<li><a href="#size">Size</a>
+<ul>
+<li><a href="#autoFit">autoFit - <i>true</i> | false</a></li>
+<li><a href="#autoFitSpace">autoFitSpace - pixels (5)</a></li>
+<li><a href="#enableImageResize">enableImageResize - <i>true</i> | false</a></li>
+<li><a href="#inFrameResize">inFrameResize - <i>true</i> | false</a></li>
+<li><a href="#resizeTool">resizeTool - <i>'cursor'</i> | 'topleft' | 'both'</a></li>
+<li><a href="#enableDragResize">enableDragResize - true | <i>false</i></a></li>
+<li><a href="#draggerLocation">draggerLocation - <i>'frame'</i> | 'content'</a></li>
+<li><a href="#stickyResize">stickyResize - <i>true</i> | false</a></li>
+<li><a href="#minWidthHeight">minWidth - pixels | 'xx%' (140)</a></li>
+<li><a href="#minWidthHeight">minHeight - pixels | 'xx%' (100)</a></li>
+<li><a href="#maxWidthHeight">maxWidth - pixels | 'xx%' (0)</a></li>
+<li><a href="#maxWidthHeight">maxHeight - pixels | 'xx%' (0)</a></li>
+<li><a href="#minBoxWidthHeight">minBoxWidth - pixels | 'xx%'</a></li>
+<li><a href="#minBoxWidthHeight">minBoxHeight - pixels | 'xx%'</a></li>
+</ul>
+</li>
+
+<li><a href="#position">Position</a>
+<ul>
+<li><a href="#boxLeftTop">boxLeft - pixels | 'click' | 'xx%'</a></li>
+<li><a href="#boxLeftTop">boxTop - pixels | 'click' | 'yy%'</a></li>
+<li><a href="#boxLeftTopAdjust">boxLeftAdjust - pixels | 'xx%'</a></li>
+<li><a href="#boxLeftTopAdjust">boxTopAdjust - pixels | 'yy%'</a></li>
+<li><a href="#Pos">captionPos - 'tl' | 'tc' | 'tr' | <i>'bl'</i> | 'bc' | 'br'</a></li>
+<li><a href="#Pos">caption2Pos - 'tl' | <i>'tc'</i> | 'tr' | 'bl' | 'bc' | 'br'</a></li>
+<li><a href="#Pos">infoLinkPos - 'tl' | 'tc' | 'tr' | <i>'bl'</i> | 'bc' | 'br'</a></li>
+<li><a href="#Pos">printLinkPos - 'tl' | 'tc' | 'tr' | <i>'bl'</i> | 'bc' | 'br'</a></li>
+<li><a href="#Pos">newWindowLinkPos - 'tl' | 'tc' | <i>'tr'</i> | 'bl' | 'bc' | 'br'</a></li>
+<li><a href="#Pos">itemNumberPos - 'tl' | 'tc' | 'tr' | <i>'bl'</i> | 'bc' | 'br'</a></li>
+<li><a href="#Pos">indexPos - 'tl' | 'tc' | 'tr' | 'bl' | 'bc' | <i>'br'</i></a></li>
+<li><a href="#Pos">controlsPos - 'tl' | 'tc' | 'tr' | 'bl' | 'bc' | <i>'br'</i></a></li>
+<li><a href="#outerClosePos">outerClosePos - 'tl' | <i>'tr'</i></a></li>
+<li><a href="#strictCentering">strictCentering - <i>true</i> | false</a></li>
+<li><a href="#centerNav">centerNav - true | <i>false</i></a></li>
+<li><a href="#enableDragMove">enableDragMove - <i>true</i> | false</a></li>
+<li><a href="#stickyMove">stickyMove - <i>true</i> | false</a></li>
+</ul>
+</li>
+
+<li><a href="#controls">Controls</a>
+<ul>
+<li><a href="#showControlsText">showControlsText - true | false</a></li>
+<li><a href="#showClose">showClose - <i>true</i> | false</a></li>
+<li><a href="#showOuterClose">showOuterClose - true | <i>false</i></a></li>
+<li><a href="#showPrint">showPrint - true | <i>false</i></a></li>
+<li><a href="#printCSS">printCSS - css text | css filePath</a></li>
+<li><a href="#printText">printText - string</a></li>
+<li><a href="#infoOptions">infoOptions - option string</a></li>
+<li><a href="#infoText">infoText - string</a></li>
+<li><a href="#showNewWindow">showNewWindow - true | <i>false</i></a></li>
+<li><a href="#closeOnNewWindow">closeOnNewWindow - true | <i>false</i></a></li>
+<li><a href="#showHints">showHints - <i>'once'</i> | true | false</a></li>
+<li><a href="#outsideClickCloses">outsideClickCloses - true | false</a></li>
+<li><a href="#contentClickCloses">contentClickCloses - true | <i>false</i></a></li>
+<li><a href="#enableKeyboardNav">enableKeyboardNav - <i>true</i> | false</a></li>
+</ul>
+</li>
+
+<li><a href="#galleries">Galleries</a>
+<ul>
+<li><a href="#imageTransition">imageTransition - <i>'crossfade'</i> | 'slide' | 'shift' | 'expand' | 'fade' | 'none'</a></li>
+<li><a href="#transitionTime">transitionTime - seconds (0.8)</a></li>
+<li><a href="#navType">navType - 'overlay' | 'button' | <i>'both'</i> | 'none'</a></li>
+<li><a href="#navOverlayWidth">navOverlayWidth - 0-50 (30)</a></li>
+<li><a href="#navOverlayPos">navOverlayPos - 0-100 (33)</a></li>
+<li><a href="#showNavOverlay">showNavOverlay - true | false</a></li>
+<li><a href="#enableSwipeNav">enableSwipeNav - <i>true</i> | false</a></li>
+<li><a href="#showItemNumber">showItemNumber - <i>true</i> | false</a></li>
+<li><a href="#enableWrap">enableWrap - <i>true</i> | false</a></li>
+<li><a href="#numIndexLinks">numIndexLinks - number (0)</a></li>
+<li><a href="#showIndexThumbs">showIndexThumbs - <i>true</i> | false</a></li>
+<li><a href="#maxIndexThumbSize">maxIndexThumbSize - pixels (0)</a></li>
+<li><a href="#indexThumbSource">indexThumbSource - img filePath | 'href'</a></li>
+<li><a href="#randomOrder">randomOrder - true | <i>false</i></a></li>
+</ul>
+</li>
+
+<li><a href="#slideshows">Slideshows</a>
+<ul>
+<li><a href="#doSlideshow">doSlideshow - true | <i>false</i></a></li>
+<li><a href="#slideInterval">slideInterval - seconds (4.5)</a></li>
+<li><a href="#afterSlideshow">afterSlideshow - <i>'exit'</i> | 'stop' | 'loop'</a></li>
+<li><a href="#showPlayPause">showPlayPause - <i>true</i> | false</a></li>
+<li><a href="#startPaused">startPaused - true | <i>false</i></a></li>
+</ul>
+</li>
+
+<li><a href="#contip">Tooltips &amp; Context Boxes</a>
+<ul>
+<li><a href="#contipSource">source - a content reference</a></li>
+<li><a href="#placement">placement - 'top' | <i>'bottom'</i> | 'left' | 'right' | 'center'</a></li>
+<li><a href="#showOnce">showOnce - true | <i>false</i></a></li>
+<li><a href="#delay">delay - milliseconds (333)</a></li>
+<li><a href="#arrowColor">arrowColor - css color</a></li>
+<li><a href="#arrowSize">arrowSize - pixels (16)</a></li>
+<li><a href="#contextMouseButton">contextMouseButton - <i>'both'</i> | 'left' | 'right'</a></li>
+</ul>
+</li>
+
+<li><a href="#cyclers">Image/Thumbnail Cyclers</a>
+<ul>
+<li><a href="#cycleInterval">cycleInterval - seconds (6)</a></li>
+<li><a href="#cycleFadeTime">cycleFadeTime - seconds (1.7)</a></li>
+<li><a href="#cycleZoom">cycleZoom - 0-1 (0.2)</a></li>
+<li><a href="#cycleEasing">cycleEasing - 1-4 (1.4)</a></li>
+<li><a href="#cycleInflection">cycleInflection - 0-1</a></li>
+<li><a href="#cyclePauseOnClick">cyclePauseOnClick - true | <i>false</i></a></li>
+<li><a href="#cycleShowControls">cycleShowControls - <i>true</i> | false</a></li>
+<li><a href="#cycleControlsPos">cycleControlsPos - 'tl' | 'tc' | 'tr' | <i>'bl'</i> | 'bc' | 'br'</a></li>
+<li><a href="#cycleStartPaused">cycleStartPaused - true | <i>false</i></a></li>
+<li><a href="#cyclePauseOnHover">cyclePauseOnHover - true | <i>false</i></a></li>
+</ul>
+</li>
+
+<li><a href="#general">General</a>
+<ul>
+<li><a href="#mobile">mobile - option string | object</a></li>
+<li><a href="#addVideoThumb">addVideoThumb - width | 'small' | <i>'medium'</i> | 'large'</a></li>
+<li><a href="#addPlayButton">addPlayButton - 'small' | 'medium' | 'large' | false</a></li>
+<li><a href="#fetchVideoInfo">fetchVideoInfo - <i>true</i> | false</a></li>
+<li><a href="#autoPlayVideo">autoPlayVideo - <i>true</i> | false</a></li>
+<li><a href="#autoEndVideo">autoEndVideo - <i>true</i> | false</a></li>
+<li><a href="#titleAsCaption">titleAsCaption - <i>true</i> | false | 'a' | 'img'</a></li>
+<li><a href="#altAsCaption">altAsCaption - true | <i>false</i></a></li>
+<li><a href="#showMagCursor">showMagCursor - 'once' | true | <i>false</i></a></li>
+<li><a href="#modal">modal - <i>true</i> | false</a></li>
+<li><a href="#keepCentered">keepCentered - true | false</a></li>
+<li><a href="#boxScroll">boxScroll - <i>true</i> | false</a></li>
+<li><a href="#pageScroll">pageScroll - <i>true</i> | false</a></li>
+<li><a href="#instanceName">instanceName - string</a></li>
+<li><a href="#zIndex">zIndex - number (77777)</a></li>
+<li><a href="#framed">framed - true | <i>false</i></a></li>
+<li><a href="#activateMedia">activateMedia - <i>true</i> | false</a></li>
+<li><a href="#autoGallery">autoGallery - true | <i>false</i></a></li>
+<li><a href="#preloadLimit">preloadLimit - number (5)</a></li>
+<li><a href="#language">language - 'xx' (see the languages folder)</a></li>
+<li><a href="#classNames">floatboxClass - className(s) ('floatbox')</a></li>
+<li><a href="#classNames">cyclerClass - className ('fbCycler')</a></li>
+<li><a href="#classNames">tooltipClass - className ('fbTooltip')</a></li>
+<li><a href="#classNames">contextClass - className ('fbContext')</a></li>
+</ul>
+</li>
+
+<li><a href="#item">Item-Specific</a>
+<ul>
+<li><a href="#group">group - string</a></li>
+<li><a href="#WidthHeight">width - pixels | 'xx%'</a></li>
+<li><a href="#WidthHeight">height - pixels | 'xx%' | 'xx%w'</a></li>
+<li><a href="#contentScroll">contentScroll - true | false</a></li>
+<li><a href="#captions">caption - string | #hiddenDivId</a></li>
+<li><a href="#captions">caption2 - string | #hiddenDivId</a></li>
+<li><a href="#HeaderFooter">header - string | #hiddenDivId</a></li>
+<li><a href="#HeaderFooter">footer - string | #hiddenDivId</a></li>
+<li><a href="#type">type - 'ajax' | 'video' | 'image'</a></li>
+<li><a href="#showThis">showThis - <i>true</i> | false</a></li>
+<li><a href="#sameBox">sameBox - true | <i>false</i></a></li>
+<li><a href="#newWindow">newWindow - true | <i>false</i></a></li>
+<li><a href="#altContent">altContent - string</a></li>
+<li><a href="#info">info - source reference</a></li>
+<li><a href="#useMap">useMap - id</a></li>
+<li><a href="#source">source - source reference</a></li>
+<li><a href="#className">className - string</a></li>
+<li><a href="#autoStart">autoStart - 'once' | true | <i>false</i></a></li>
+<li><a href="#autoDelay">autoDelay - seconds (0)</a></li>
+<li><a href="#autoEnd">autoEnd - seconds (0)</a></li>
+<li><a href="#loadPageOnClose">loadPageOnClose - 'self' | 'back' | url</a></li>
+<li><a href="#order">order - number</a></li>
+</ul>
+</li>
+
+<li><a href="#callbacks">Event Callbacks</a>
+<ul>
+<li><a href="#beforeBoxStart">beforeBoxStart - function | eval string</a></li>
+<li><a href="#beforeItemStart">beforeItemStart - function | eval string</a></li>
+<li><a href="#afterBoxStart">afterBoxStart - function | eval string</a></li>
+<li><a href="#afterItemStart">afterItemStart - function | eval string</a></li>
+<li><a href="#beforeItemEnd">beforeItemEnd - function | eval string</a></li>
+<li><a href="#beforeBoxEnd">beforeBoxEnd - function | eval string</a></li>
+<li><a href="#afterItemEnd">afterItemEnd - function | eval string</a></li>
+<li><a href="#afterBoxEnd">afterBoxEnd - function | eval string</a></li>
+<li><a href="#beforePrint">beforePrint - function | eval string</a></li>
+</ul>
+</li>
+
+</ul>
+</div>
+
+<div id="appearance" class="section_break"></div>
+<p class="section_title">Appearance</p>
+
+<a id="boxCornerRadius"></a>
+<p><b>boxCornerRadius</b> - pixels (10)<br/>
+This sets the border-radius for the outer box perimeter, in pixels.
+</p>
+
+<a id="contentCornerRadius"></a>
+<p><b>contentCornerRadius</b> - pixels (0)<br/>
+Set the border-radius for the inner content area,in pixels.
+</p>
+
+<a id="shadowType"></a>
+<p><b>shadowType</b> - <i>'drop'</i> | 'hybrid' | 'halo' | 'none'<br/>
+Set 3D shadow effect.
+'drop' sets a 2-sided shadow on the right and bottom.
+'hybrid' sets the full shadow on the right and bottom and a fainter half shadow on the left and top.
+'halo' sets a full shadow on all 4 sides.
+</p>
+
+<a id="shadowSize"></a>
+<p><b>shadowSize</b> - pixels (10)<br/>
+Sets the width in pixels of the shadow effect around the box.
+</p>
+
+<a id="shadowOpacity"></a>
+<p><b>shadowOpacity</b> - 0-1 (0.4)<br/>
+The opacity or darkness of the shadow effect around the box.
+</p>
+
+<a id="outerBorder"></a>
+<p><b>outerBorder</b> - pixels (1)<br/>
+Width of the border around the outside edge of the box.
+</p>
+
+<a id="innerBorder"></a>
+<p><b>innerBorder</b> - pixels (1)<br/>
+Width of the inside border around the edge of the main content.
+</p>
+
+<a id="padding"></a>
+<p><b>padding</b> - pixels (20)<br/>
+Width of the area between the floatbox content and the outer floatbox edges.
+</p>
+
+<a id="panelPadding"></a>
+<p><b>panelPadding</b> - pixels (6)<br/>
+Gap above and below the contents of the floatbox frame area like the caption and close buttons.
+Provides the vertical spacing between the floatbox outer edge, frame content, and main content.
+</p>
+
+<a id="overlayOpacity"></a>
+<p><b>overlayOpacity</b> - 0-1 (0.55)<br/>
+Opacity or darkness of the full-screen page overlay. 0 is fully transparent, 1 is fully opaque.
+</p>
+
+<p><a href="#index">Back to Index</a></p>
+
+<div id="animations" class="section_break"></div>
+<p class="section_title">Animations</p>
+
+<a id="doAnimations"></a>
+<p><b>doAnimations</b> - <i>true</i> | false<br/>
+Setting doAnimations to false is a short-hand way of setting transitionTime, resizeTime and overlayFadeTime all to 0.
+When doAnimations is false, startAt, endAt, zoomSource, imageTransition and splitResize become irrelevant.<br/>
+(To turn off animations only on smallScreen devices (phones), put "doAnimations:false" in a 'mobile' options set.)
+</p>
+
+<a id="overlayFadeTime"></a>
+<p><b>overlayFadeTime</b> - seconds (0.4)<br/>
+Number of seconds for the opacity fade-in and fade-out of the translucent overlay which covers the host page.
+</p>
+
+<a id="resizeTime"></a>
+<p><b>resizeTime</b> - seconds (0.7)<br/>
+Controls the speed of the animated opening and closing resize of the floatbox from and to the thumbnail or click starting position.
+</p>
+
+<a id="fadeTime"></a>
+<p><b>fadeTime</b> - seconds (0.4)<br/>
+This is the time taken to fade in the box contents immediately after starting up the floatbox or before closing it down.
+If not overridden, tooltips will use 0.2 seconds for fadeIn and context boxes will use 0.
+</p>
+
+<a id="startAt"></a>
+<p><b>startAt</b> - id | null<br/>
+The default starting point for opening box animations is either at the click or touch location
+or from a thumbnail if the 'zoom' effect is being used.
+Set startAt to an id of an element on the page to start the animations from the center of that element.
+Set startAt to null to make the starting point the center of the screen.
+</p>
+
+<a id="endAt"></a>
+<p><b>endAt</b> - 'start' | id | null<br/>
+The endAt option controls the ending point that a floatbox will collapse to when animating out.
+If zooming from an image down to a thumbnail, the default closing point will be the thumbnail that matches the currently showing image.
+If not zooming to a thumbnail, the default closing location is at the mouse click or touch that opened the box.
+If neither of the above, it will go to the center of the screen.<br/>
+Set endAt to an element's id to set the closing point to the center of that  element.
+This could be useful for example when closing a shopping cart form and wanting to draw attention towards an updated cart link on the page.
+Set endAt to null to close to the center of the screen,
+and set it to 'start' to have it close to wherever it started from (which is usually the default behaviour anyway).
+</p>
+
+<a id="zoomSource"></a>
+<p><b>zoomSource</b> - img filePath | null<br/>
+Default behaviour for images and video is to do 'zoom' animations up from and down to the clicked anchor when opening and closing.
+The image zoomed is the same image that is being shown.
+The zoomSource option can be used to assign an alternate image to use for the zoom animation.
+Set zoomSource to the path of an image file to be used in the animation.<br/>
+Any content type can have a zoomSource image assigned to it, so for example, a form can open by zooming up a screen capture image of that form.
+To disable the image zooming effect, set zoomSource to null.
+</p>
+
+<a id="zoomBorder"></a>
+<p><b>zoomBorder</b> - pixels (1)<br/>
+Sets the border width around the zoomSource image for zooming in and out.
+Default is 1px.
+</p>
+
+<a id="splitResize"></a>
+<p><b>splitResize</b> - true | <i>false</i><br/>
+Default animated resizing of floatbox resizes width, height, top and left simultaneously.
+Setting splitResize to true yeilds sequenced animation where the X and Y dimensions are resized seperately.
+When split-resizing, the smallest dimension will be sized first, followed by the other larger dimension.
+This avoids unaesthetic resize behaviour of initially bloating up in the larger dimension.
+Note that splitResize does not take effect while 'zooming' an image in or out or while cross-fading between images in a gallery set.
+</p>
+
+<a id="easing"></a>
+<p><b>easing</b> ** - 1-4 (2.5)<br/>
+Floatbox size and position animations are normally 'eased', meaning they are slower at the start, faster in the middle, slower at the end.
+The 'easing' option modifies the strength of the acceleration curve, with a value of 1 flattening the curve to linear, thereby turning off easing.
+</p>
+
+<a id="inflection"></a>
+<p><b>inflection</b> ** - 0-1 (0.5)<br/>
+The 'inflection' option sets the transition point where easing switches from deceleration to acceleration.
+The default of 0.5 puts it right in the middle of the animation.
+Decrease the inflection point to move the transition point closer to the start of the animation
+and increase it to move closer to the end.
+</p>
+
+<a id="animationTime"></a>
+<p><b>animationTime</b> ** - seconds (1)<br/>
+This sets the default speed of animations done by the fb.animate API function that haven't specified a speed in their call parameters.
+</p>
+
+<p><a href="#index">Back to Index</a></p>
+
+<div id="colors" class="section_break"></div>
+<p class="section_title">Colors</p>
+
+<a id="colorTheme"></a>
+<p><b>colorTheme</b> - 'black' | 'blue' | 'silver' | 'white' | 'yellow' | 'red'<br/>
+When the colorTheme option is not specified, floatbox defaults to black for images, silver for HTML content, and blue for multi-media.
+Assigning a specific colorTheme setting overrides these defaults.
+</p>
+
+<a id="boxColor"></a>
+<p><b>boxColor</b> - css color [|css color]<br/>
+'boxColor' assigns the main background color of the floatbox's frame area using any css color.
+A gradient effect can also be assigned to the floatbox by setting boxColor to two css colors separated the the '|' character.<br/>
+If defining a gradient, hex color formats must be used. For example: <span class="code">boxColor:#123456|#edca98</span><br/>
+If a gradient is set, boxCornerRadius is set to 0 and the floatbox will have square corners.
+Note that setting boxBackgroundImage can override a boxColor assignment.
+</p>
+
+<a id="Color"></a>
+<p><b>overlayColor</b> - css color<br/>
+<b>innerBorderColor</b> - ...<br/>
+<b>outerBorderColor</b> - ...<br/>
+Assign any standard css color to various floatbox components using these options.
+A good way to do extensive appearance customizations is to set the desired options in a className definition fbOptions.js (or in fbOptions on a page).
+Once this is done, the collection of option settings can be assigned to one or more floatboxed links simply by placing the assigned class name on them.
+</p>
+
+<a id="textColor"></a>
+<p><b>textColor</b> - css color<br/>
+<b>strongTextColor</b> - ...<br/>
+These work the same as the other color options.
+'textColor' applies to the 'item x of y' display, index links, and the 'open in a new window' link.
+'strongTextColor' applies to captions, info and print links, and the new window link when it's hovered.
+</p>
+
+<a id="contentBackgroundColor"></a>
+<p><b>contentBackgroundColor</b> - css color<br/>
+The default background color of floatbox's content area is white for non-iframe HTML content and transparent for all others.
+If a different background color is required for some content, the desired color can be assigned by setting the 'contentBackgroundColor' option.
+Valid values are any color values that can be assigned via css.
+This setting will have a visible effect ony if the content shown has some transparent areas.
+</p>
+
+<a id="boxBackgroundImage"></a>
+<p><b>boxBackgroundImage</b> - img filePath<br/>
+The main floatbox frame area can have a background image assigned to it to give texture or other effects.
+Set 'boxBackgroundImage' to the URL path of the image to be used as the background.
+</p>
+
+<a id="overlayBackgroundImage"></a>
+<p><b>overlayBackgroundImage</b> - img filePath<br/>
+A repeating background image can be assigned to the normally translucent page overlay.
+Set 'overlayBackgroundImage' to the URL path of the image to be used as the background,
+and perhaps also set "overlayOpacity:1" to make it opaque.
+</p>
+
+<p><a href="#index">Back to Index</a></p>
+
+<div id="size" class="section_break"></div>
+<p class="section_title">Size</p>
+
+<a id="autoFit"></a>
+<p><b>autoFit</b> - <i>true</i> | false<br/>
+Default behaviour for content that is larger than the viewable screen is to auto-size the floatbox such that it fits within the screen.
+Set autoFit to false to disable this auto-sizing.
+</p>
+
+<a id="autoFitSpace"></a>
+<p><b>autoFitSpace</b> - pixels (5)<br/>
+The minimum space to leave between the floatbox edge and the browser window edge when autoFitting content.
+</p>
+
+<a id="enableImageResize"></a>
+<p><b>enableImageResize</b> - <i>true</i> | false<br/>
+If enableImageResize is set to true, images that have been autoSized to fit the screen, that have been resized with drag-resizing, or are displayed larger than the current screen size can be resized using the resize tool.
+</p>
+
+<a id="inFrameResize"></a>
+<p><b>inFrameResize</b> - <i>true</i> | false<br/>
+An image may be displayed at smaller than its native size when autoFit causes it to scale to fit the viewport.
+The image can then be resized to its full size using the resizeTool as described below.
+The default resizing behaviour is for the floatbox frame to remain at its smaller size inside the viewport
+and for the image to scale up to its full size inside the floatbox frame.
+It can then be dragged around inside the frame with the mouse or touch gestures.
+Set inFrameResize to false to disable this behaviour and to cause the entire floatbox, including the frame, to to scale up to full size when requested.
+</p>
+
+<a id="resizeTool"></a>
+<p><b>resizeTool</b> - <i>'cursor'</i> | 'topleft' | 'both'<br/>
+Sets the tool used when enableImageResize is true.
+The cursor tool enables clicking on the image to resize and displays a magnifying glass to show when resizing is allowed.
+The topleft tool is a small semi-transparent button in the top left corner of the image.
+</p>
+
+<a id="enableDragResize"></a>
+<p><b>enableDragResize</b> - true | <i>false</i><br/>
+If true, a small resize widget will be shown in the bottom right corner that mousers can drag on with their mice to resize the box.
+Not available when using touch gestures.
+</p>
+
+<a id="draggerLocation"></a>
+<p><b>draggerLocation</b> - <i>'frame'</i> | 'content'<br/>
+If enableDragResize is true, and image content is being shown, and draggerLocation is set to 'content',
+the resizer widget will be placed at the bottom right corner of the content area instead of in the frame area.
+</p>
+
+<a id="stickyResize"></a>
+<p><b>stickyResize</b> - <i>true</i> | false<br/>
+'stickyResize' causes size changes made to a floatbox - either by 'dragResizing' or with the API resize() function - to persist in subsequent box size calculations.
+Set it to false to have the floatbox return to normal size when showing the next item in a set.
+</p>
+
+<a id="minWidthHeight"></a>
+<p><b>minWidth</b> (140) - pixels | 'xx%'<br/>
+<b>minHeight</b> (100) - ...<br/>
+minWidth and minHeight set the lower limits for the dimensions of the displayed content, not including the floatbox frame outside of the content.
+The content will be displayed at at least these dimensions and cannot be drag-resized or auto-sized smaller than these limits.
+minWidth and minHeight can be set as a number of pixels or as a percentage of the visible screen size.
+</p>
+
+<a id="maxWidthHeight"></a>
+<p><b>maxWidth</b> (0) - pixels | 'xx%'<br/>
+<b>maxHeight</b> (0) - ...<br/>
+maxWidth and maxHeight set the upper size limits for floatbox content dimensions.
+When set to 0, no limit is in effect and the content will be presented at its native, specified or measured size.<br/>
+If these options are applied to image content and are smaller than the image's native dimensions,
+the image will still be resize-able up to native dimensions
+(provided the enableImageResize option has not been set to false).<br/>
+maxWidth and maxHeight can be set as a number of pixels or as a percentage of the visible screen size.
+</p>
+
+<a id="minBoxWidthHeight"></a>
+<p><b>minBoxWidth</b> (0) - pixels | 'xx%'<br/>
+<b>minBoxHeight</b> (0) - ...<br/>
+minBoxWidth and minBoxHeight can be used to setup a floatbox frame area larger than it would normally be based on the padding option and content size.
+In a gallery set or slideshow, this could be used to define a floatbox that fills the screen and remains a constant size while the content area inside the box changes to accommodate the various gallery set members.
+</p>
+
+<p><a href="#index">Back to Index</a></p>
+
+<div id="position" class="section_break"></div>
+<p class="section_title">Position</p>
+
+<a id="boxLeftTop"></a>
+<p><b>boxLeft</b> - pixels | 'click' | 'xx%'<br/>
+<b>boxTop</b> - ...<br/>
+Default box positioning is for the floatbox to open centered in the viewable browser screen area (with a little offset toward the top).
+The 'boxLeft' and 'boxTop' options can be used to change this default box placement.
+If set to simple integers, those integers will be taken as screen pixel locations at which to place the floatbox.
+These pixel placement values are relative to the visible browser viewport and not to the underlying document.
+If set to the string 'click', the floatbox's left and/or top edge will open at the mouse click or touch location.
+The 'boxLeft' and 'boxTop' positions can also be set as a percentage of the screen size.
+For example, a 'boxLeft' setting of '50%' will place the left edge of the floatbox at the screen centre.<br/>
+</p>
+
+<a id="boxLeftTopAdjust"></a>
+<p><b>boxLeftAdjust</b> - pixels | 'xx%'<br/>
+<b>boxTopAdjust</b> - ...<br/>
+boxLeftAdjust and boxTopAdjust are added in to the floatbox positioning after all other position calculations such as autoFit and default centering are complete.
+Specified as + or - pixel count or percentage of screen size, they move the final floatbox position the requested amount.
+These adjustments are most typically used to alter the placement of enhanced tooltips and context boxes.
+</p>
+
+<a id="Pos"></a>
+<p><b>captionPos</b> ('bl') - 'tl' | 'tc' | 'tr' | 'bl' | 'bc' | 'br'<br/>
+<b>caption2Pos</b> ('tc') - ...<br/>
+<b>infoLinkPos</b> ('bl') - ...<br/>
+<b>printLinkPos</b> ('bl') - ...<br/>
+<b>newWindowLinkPos</b> ('tr') - ...<br/>
+<b>itemNumberPos</b> ('bl') - ...<br/>
+<b>indexPos</b> ('br') - ...<br/>
+<b>controlsPos</b> ('br') - ...<br/>
+These options control the positioning of the various widgets that can appear in the floatbox border area.
+See the 'layout' section of the instructions for more detail if required.
+Values are short-hand for top-left, top-center, top-right, bottom-left, bottom-center and bottom-right.
+</p>
+
+<a id="outerClosePos"></a>
+<p><b>outerClosePos</b> - 'tl' | <i>'tr'</i><br/>
+The round outerClose button can be shown either in the top-left or the top-right corner by setting outerClosePos to the desired value.
+</p>
+
+<a id="strictCentering"></a>
+<p><b>strictCentering</b> - <i>true</i> | false<br/>
+strictCentering defaults to true and ensures that any captions or widgets positioned in the 'tc' or 'bc' positions will be accurately centered in the floatbox frame area.
+This can be expensive in terms of leaving blank space on either side of the centered components, especially on small screens,
+and so strictCentering is turned off for mobile devices in fbOptions.js.
+</p>
+
+<a id="centerNav"></a>
+<p><b>centerNav</b> - true | <i>false</i><br/>
+When the navigation controls (set by controlsPos) are in one of the corner positions ('tl', 'tr', 'bl', 'br'),
+the "&larr; prev next &rarr;" controls can be moved to the center of the corresponding panel by setting centerNav to true.
+</p>
+
+<a id="enableDragMove"></a>
+<p><b>enableDragMove</b> - <i>true</i> | false<br/>
+If 'enableDragMove' is not set to false, a floatbox can be dragged around the screen by a touch-move gesture or a hold-down of the left mouse button on the floatbox frame outside of the main content area.<br/>
+The box can also be dragged around from image content, unless it is a multi-image gallery set and touch gestures are being used.
+(Touch-swiping a gallery set image is reserved for navigation to the previous or next image in the set.)<br/>
+fbTooltip and fbContext boxes cannot be moved by user input.
+</p>
+
+<a id="stickyMove"></a>
+<p><b>stickyMove</b> - <i>true</i> | false<br/>
+'stickyMove' causes position changes made to a floatbox - either by dragging the floatbox around the screen or with the API resize() function - to persist in subsequent box position calculations.
+Set it to false to have the moved floatbox return to centered position when showing the next item in a set.
+</p>
+
+<p><a href="#index">Back to Index</a></p>
+
+<div id="controls" class="section_break"></div>
+<p class="section_title">Controls</p>
+
+<a id="showControlsText"></a>
+<p><b>showControlsText</b> - true | false<br/>
+If set to true, the text on the various controls will show for all browsers,
+and if set to none, no browsers will get text on the controls.
+The default is for smallScreen devices to not get the text, but everybody else does.
+</p>
+
+<a id="showClose"></a>
+<p><b>showClose</b> - <i>true</i> | false<br/>
+Enables/disables display of the close button in the floatbox border area.
+</p>
+
+<a id="showOuterClose"></a>
+<p><b>showOuterClose</b> - true | <i>false</i><br/>
+Enables/disables display of the round external close button that can be shown at one of the top corners of a floatbox.
+</p>
+
+<a id="showPrint"></a>
+<p><b>showPrint</b> - true | <i>false</i><br/>
+If showPrint is set to true, a "Print..." link will be shown in the floatbox border area.
+This print link invokes a print dialog that will print just the floatbox contents, not the underlying page.
+(The "Print..." text is translated/regionalized in the language files.)
+See the printCSS option for how to pass css stylings to the print content.
+Print links will not be shown for cross-domain iframe content because cross-domain script blocking will prevent the printing from succeeding.
+</p>
+
+<a id="printCSS"></a>
+<p><b>printCSS</b> - css text | css filePath<br/>
+When showPrint is enabled, it may be necessary to provide some css to format the print content.
+The desired CSS settings can be provided directly as text. For example, <span class="code">printCSS:`h4 {color: #123456;} a img {border: 2px solid black;}`</span>.
+'printCSS' can also be set to the path of an external css file which will be attached and applied to the print window contents.
+E.g., <span class="code">printCSS:myPrint.css</span>.
+</p>
+
+<a id="printText"></a>
+<p><b>printText</b> - string<br/>
+Replaces the default text "Print..." (or the translated equivalent) used for the print link with text of your choice.
+</p>
+
+<a id="infoOptions"></a>
+<p><b>infoOptions</b> - option string<br/>
+Used in conjunction with the 'info' option, this allows assigning configuration options to the secondary info floatbox using the standard options attribute syntax.
+Wrap the infoOptions in backquotes for correct parsing and see the instructions and demo for more details.
+</p>
+
+<a id="infoText"></a>
+<p><b>infoText</b> - string<br/>
+Replaces the default text "Info..." (or the translated equivalent) used for the info link with text of your choice.
+For example, if displaying EXIF information through the info option, the 'infoText' options could be set to "EXIF..."
+</p>
+
+<a id="showNewWindow"></a>
+<p><b>showNewWindow</b> - true | <i>false</i><br/>
+If showNewWindow is set to true, a "Open in a new window" link will be shown in the floatbox border area.
+Clicking this link will open a new browser window or tab with the floatbox content loaded as an ordinary page.
+("Open in a new window" is translated/regionalized in the language files.)
+Use the closeOnNewWindow option in conjunction with showNewWindow.
+</p>
+
+<a id="closeOnNewWindow"></a>
+<p><b>closeOnNewWindow</b> - true | <i>false</i><br/>
+When set to true, floatbox will end (close) when the newWindow link (described in the options reference and instructions) is clicked.
+</p>
+
+<a id="showHints"></a>
+<p><b>showHints</b> - <i>'once'</i> | true | false<br/>
+Controls display of system tooltip messages on mouseover of the nav and control buttons.
+These tooltip messages are intended to be used to inform users about keyboard navigation shortcuts.
+With the default setting of 'once', each tooltip will deactivate after it has been displayed for sufficient time to be read.
+A tooltip message will also be deactivated if the user navigates with the associated keyboard shortcut.
+If enableKeyboardNav is set to false, showHints will be set to false.
+</p>
+
+<a id="outsideClickCloses"></a>
+<p><b>outsideClickCloses</b> - true | false<br/>
+Default behaviour when outsideClickCloses is not set is for modal boxes, tooltips and context boxes to close when something outside the floatbox is clicked or touched.
+Set this to true to make non-modal boxes close on an outside click, or false to make any box ignore outside clicks.
+</p>
+
+<a id="contentClickCloses"></a>
+<p><b>contentClickCloses</b> - true | <i>false</i><br/>
+If set to true, floatbox will exit when the user clicks on the floatbox's displayed content.
+This option is primarily useful for images and context boxes.
+By default, a context box will close when the page outside of the floatbox is click or touched, but remains open if interaction occurs within it's content.
+When set for images that have the navigation overlay active (navType = 'overlay' or 'both'),
+the click-to-close area is down the center of the image in the space remaining between the left and right navigation areas.
+</p>
+
+<a id="enableKeyboardNav"></a>
+<p><b>enableKeyboardNav</b> - <i>true</i> | false<br/>
+Enables or disables the keyboard handler for previous/next, pause/play, resize and close actions.
+</p>
+
+<p><a href="#index">Back to Index</a></p>
+
+<div id="galleries" class="section_break"></div>
+<p class="section_title">Galleries</p>
+
+<a id="imageTransition"></a>
+<p><b>imageTransition</b> - <i>'crossfade'</i> | 'slide' | 'shift' | 'expand' | 'fade' | 'none'<br/>
+A variety of animations are available when transitioning between two images in a gallery set.
+These transitions will be synchronized with any floatbox resizing that needs to occur such that all animations will complete simultaneously.
+The default transition setting is 'crossfade', which fades out the old image while fading in the new one.
+'slide' does not alter opacity but instead will slide the current image out of the floatbox and thereby reveal the stationary next image underneath it.
+Regardless of the imageTransition setting, if a touch user uses a swipe gesture to navigate through an image gallery,
+the 'slide' effect will be done, because it looks very natural when swiping.
+The 'shift' setting is similar to 'slide' except that instead of being stationary, the new image will slide into the box while the current image slides out, as if the two images were attached at their edges.
+'expand' is kind of like an accordion seam; it's a little hard to explain -  try it to see it.
+A setting of 'fade' will cause the images to fade to black (or whatever the current colorTheme is), resize the box if necessary, and then fade the new image in from black.
+'imageTransition:none' is equivalent to setting transitionTime:0, and is not recommended because it makes things look jumpy and jarring.
+</p>
+
+<a id="transitionTime"></a>
+<p><b>transitionTime</b> - seconds (0.8)<br/>
+Controls the speed at which transitions between gallery set images occur.
+</p>
+
+<a id="navType"></a>
+<p><b>navType</b> - 'overlay' | 'button' | <i>'both'</i> | 'none'<br/>
+Sets the type of navigation controls to display.
+'overlay' is the "Prev/Next" image overlay.'
+'button' gives "&lt;&lt;prev||next&gt;&gt;" in the controls area of the floatbox frame.
+Overlay navigation is not available for html and multi-media content, just for images.
+</p>
+
+<a id="navOverlayWidth"></a>
+<p><b>navOverlayWidth</b> - 0-50 (30)<br/>
+Sets the width in percentage of each of the left and right transparent overlay nav panels that provide navigation through mouse clicks on the displayed image.
+If set to 50, each panel will be half the image width and so will meet without a gap in the middle.
+40 leaves a 20% gap between panels, etc.
+If enableImageResize or contentClickCloses are active, a gap should be left between the nav panels so that there's somewhere on the image that can be clicked.
+</p>
+
+<a id="navOverlayPos"></a>
+<p><b>navOverlayPos</b> - 0-100 (33)<br/>
+When the mouse is active over an image with navType 'overlay' or 'both' set, small prev/next graphics are displayed.
+This setting is the percentage height from the image top that these graphics will appear.
+0 puts them right at the top, and 100 places them at the bottom of the image.
+</p>
+
+<a id="showNavOverlay"></a>
+<p><b>showNavOverlay</b> - true | false<br/>
+This option does not enable or disable the overlay navigation - use navType for that.
+'showNavOverlay' controls the visibility of the overlayed navigation 'prev' and 'next' graphics.<br/>
+Set "showNavOverlay:true" to force it always on, and "showNavOverlay:false" to turn it always off.
+When the overlay nav graphics are turned off, overlay nav still works; it's just not displayed.
+The default when showNavOverlay is not set is for Floatbox to make an intelligent choice based on content type and touch vs. mouse usage.
+When both the overlay and button nav types are enabled, the button nav controls will highlight as the mouse moves over active image areas,
+regardless of the 'showNavOverlay' setting.
+</p>
+
+<a id="enableSwipeNav"></a>
+<p><b>enableSwipeNav</b> - <i>true</i> | false<br/>
+Setting enableSwipeNav to false turns off the ability for touch users to navigate through a gallery set with swipe gestures on the images.
+</p>
+
+<a id="showItemNumber"></a>
+<p><b>showItemNumber</b> - <i>true</i> | false<br/>
+Setting showItemNumber to false will disable the display of the 'image/page x of y' text in gallery sets.
+</p>
+
+<a id="enableWrap"></a>
+<p><b>enableWrap</b> - <i>true</i> | false<br/>
+Enables gallery wrapping so that selecting 'next' on the last item wraps to the first, and selecting 'prev' on the first item wraps to the last.
+Because gallery viewing can start anywhere in a series of images, it is probably a good idea to leave this set to true in most circumstances.
+However, if displaying something like a series of instructions that always starts with item #1, it may be appropriate to turn wrapping off.
+The enableWrap option affects only mouse and keyboard navigation.
+Even when enableWrap is set to false, a slideshow will wrap if started with an item other than #1 or if the afterSlideshow option is set to 'loop'.
+</p>
+
+<a id="numIndexLinks"></a>
+<p><b>numIndexLinks</b> - number (0)<br/>
+Index links are a grouping of numbered links that will jump floatbox to the selected item of a gallery set when clicked.
+They look like this: <span style="white-space: nowrap;">"<u>1</u> <u>2</u> <u>3</u> <u>4</u> <u>5</u> ..."</span><br/>
+If set to 0, no index links will be shown.
+If set to -1 or to a number greater than the number of items in a gallery set, all index links will be shown - one for each item in the gallery.
+If set to a positive integer less than the number of gallery items, only that number of links will be shown.
+For example, if maxIndexLinks = 9 for a 99 item gallery, the index links will look something like
+<span style="white-space: nowrap;">"<u>1</u> ... <u>12</u> <u>13</u> <u>14</u> 15 <u>16</u> <u>17</u> <u>18</u> ...  <u>99</u>"</span>
+</p>
+
+<a id="showIndexThumbs"></a>
+<p><b>showIndexThumbs</b> - <i>true</i> | false<br/>
+Controls the display of popup thumbnails in the indexLinks group.
+If true, thumbnail popups will be displayed when an index link is hovered.
+</p>
+
+<a id="maxIndexThumbSize"></a>
+<p><b>maxIndexThumbSize</b> - pixels (0)<br/>
+The popup thumbnails used in the index links are taken from the img elements inside the associated anchor on the base page.
+These thumbnails may be larger than desired for the index links popup thumbnails.
+The index link thumbnail sizes can be limited by setting maxIndexThumbSize to the desired pixel size of the thumbnail's largest dimension.
+If maxIndexThumbSize is 0, the index link thumbnails will be shown at their native size.
+</p>
+
+<a id="indexThumbSource"></a>
+<p><b>indexThumbSource</b> - img filePath | 'href'<br/>
+When showIndexThumbs is true, the default index thumb source is the thumbnail image from a gallery item's associated anchor (link) element on the main page.
+If there is no such thumbnail, or if an alternate thumbnail is desired, the path to the desired thumbnail image can be specified in the indexThumbSource option.
+If indexThumbSource is assigned the value 'href', the main image linked to by the host anchor's href attribute will be used as the index thumb.
+When using the 'href' setting, the maxIndexThumbSize option should be set as well.
+</p>
+
+<a id="randomOrder"></a>
+<p><b>randomOrder</b> - true | <i>false</i><br/>
+Gallery sets of multiple items normally are ordered by their position in the html document.
+Setting randomOrder to true causes a gallery set to sequence its member items in a random order.
+This can be a nice touch for some slideshows.
+</p>
+
+<p><a href="#index">Back to Index</a></p>
+
+<div id="slideshows" class="section_break"></div>
+<p class="section_title">Slideshows</p>
+
+<a id="doSlideshow"></a>
+<p><b>doSlideshow</b> - true | <i>false</i><br/>
+If set to true, images in a gallery set will be launched as a slideshow.
+</p>
+
+<a id="slideInterval"></a>
+<p><b>slideInterval</b> - seconds (4.5)<br/>
+This is the number of seconds to display each image in a slideshow before moving on to the next one.
+Per-item intervals can be assigned to the item options of individual slideshow members.
+</p>
+
+<a id="afterSlideshow"></a>
+<p><b>afterSlideshow</b> - <i>'exit'</i> | 'stop' | 'loop'<br/>
+Describes what to do when all images in a slideshow have been seen.
+Note that if a slideshow was started on other than the 1st image, it will wrap around until all images have been seen before acting on the afterSlideshow directive.
+</p>
+
+<a id="showPlayPause"></a>
+<p><b>showPlayPause</b> - <i>true</i> | false<br/>
+Turns display of the slideshow play &amp; pause controls on or off.
+</p>
+
+<a id="startPaused"></a>
+<p><b>startPaused</b> - true | <i>false</i><br/>
+If true, a slideshow will start in a paused state.  If false, the slideshow will auto-play on start.
+</p>
+
+<p><a href="#index">Back to Index</a></p>
+
+<div id="contip" class="section_break"></div>
+<p class="section_title">Tooltips &amp; Context Boxes</p>
+<p>See the <a href="instructions.html#tooltip">Enhanced tooltips</a> and <a href="instructions.html#context">Context boxes</a> sections of the instructions for more details.</p>
+
+<a id="contipSource"></a>
+<p><b>source</b> - a content reference<br/>
+Every tooltip and context box requires a 'source' reference to be defined either in data-fb-tooltip or data-fb-context.
+This is the reference to the content that will be shown in the tooltip or context box.
+Commonly, source will point to a hidden div on the page with a syntax like
+<span class="code">"source:#myDivId"</span>, but it can also be a path to any type of floatbox content.
+e.g., <span class="code">"source:`myContent.html`"</span> to bring in an external page as the tooltip or context box content.
+</p>
+
+<a id="placement"></a>
+<p><b>placement</b> - <i>'bottom'</i> | 'top' | 'left' | 'right' | 'center'<br/>
+The placement option determines where an enhanced tooltip will open in relation to the host element.
+If the requested placement would make the tooltip appear partially offscreen,
+the placement will be moved over opposite to the request so that the entire tooltip shows.
+For example, a tooltip with placement:right which does not have room to show completely on the right side of the host element
+will head over to the left side, if there is sufficient room on the left.
+Similarly, 'top' and 'bottom' will be exchanged if necessary.
+</p>
+
+<a id="showOnce"></a>
+<p><b>showOnce</b> - true | <i>false</i><br/>
+If showOnce is set to true, a tooltip will be displayed only on the first mouse-over of the host element per browser session.
+A session cookie will be set in the visitor's browser that will prevent the tooltip from re-appearing for that user until a subsequent visit.
+</p>
+
+<a id="delay"></a>
+<p><b>delay</b> - milliseconds (333)<br/>
+Minimum delay in milliseconds between the element mouseover event and the display of an attached tooltip.
+</p>
+
+<a id="arrowColor"></a>
+<p><b>arrowColor</b> - css color<br/>
+All tooltips, except those with placement:center set, have a small triangular arrow pointing to the host element.
+The default color for these arrows is to use whatever is set for outerBorderColor.
+Any css color can be set directly for the arrows using the arrowColor option,
+including 'transparent' to hide them.
+</p>
+
+<a id="arrowSize"></a>
+<p><b>arrowSize</b> - pixels (16)<br/>
+As could be guessed, the arrowSize option can be used to change a tooltip's triangular arrow size to something other than the default 16px.
+The arrow can be completely removed by setting arrowSize to 0.
+In this case, the tooltip edge will be snug up against the boundary of the host element.
+If 'arrowColor' is set to 'transparent', the arrowSize option can be used to specify a gap between the tooltip and the host element
+without filling that gap with a visible arrow.
+</p>
+
+<a id="contextMouseButton"></a>
+<p><b>contextMouseButton</b> - <i>'both'</i> | 'left' | 'right'<br/>
+This option applies only to context boxes and sets which mouse buttons will be used to trigger the display of the context box.
+Mobile devices will always respond to touch gestures regardless of the contextMouseButton setting.
+Please see the note in the 'Context boxes' section of <a href="instructions.html#context">the instructions</a> for information about the unreliability of right-clicks in some browsers.
+</p>
+
+<p><a href="#index">Back to Index</a></p>
+
+<div id="cyclers" class="section_break"></div>
+<p class="section_title">Image/Thumbnail Cyclers</p>
+<p>See the <a href="instructions.html#cycler">Cycling images and thumbnails</a> section of the instructions for more details.</p>
+
+<a id="cycleInterval"></a>
+<p><b>cycleInterval</b> - seconds (6)<br/>
+The number of seconds between each turnover of the displayed image in a set of cycling images or thumbnails.
+'cycleInterval' applies to all cycler sets on a page and cannot be set per-cycler.
+All the other 'cycle*' options are per-cycler (when there is more than one cycler set on a page).
+</p>
+
+<a id="cycleFadeTime"></a>
+<p><b>cycleFadeTime</b> - seconds (1.7)<br/>
+Controls the speed of the fade in/out of the images in a set of cycling images or thumbnails.
+</p>
+
+<a id="cycleZoom"></a>
+<p><b>cycleZoom</b> - 0-1 (0.2)<br/>
+The portion of the image size to be used in the 'Ken Burns' style slow-zoom effect.
+Set this to 0 to turn off the effect and a smaller or larger number to decrease or increase the amount of zoom.
+</p>
+
+<a id="cycleEasing"></a>
+<p><b>cycleEasing</b> - 1-4 (1.4)<br/>
+Sets the strength of the easing curve for the cycleZoom effect. (See 'easing' in this Options Reference.)
+If not specified, cycleEasing will use the value set in the global 'easing' option or default to 2.5.
+</p>
+
+<a id="cycleInflection"></a>
+<p><b>cycleInflection</b> - 0-1<br/>
+Sets the inflection point for the easing curve of the cycleZoom effect. (See 'inflection' in this Options Reference.)
+If not specified, a random inflection value between 0.1 and 0.9 will be generated for each image.
+</p>
+
+<a id="cyclePauseOnClick"></a>
+<p><b>cyclePauseOnClick</b> - true | <i>false</i><br/>
+If set to true, a cycling image or thumbnail set can be paused and resumed by clicking or touching an image.
+</p>
+
+<a id="cycleShowControls"></a>
+<p><b>cycleShowControls</b> - <i>true</i> | false<br/>
+When cyclePauseOnClick is true, a visible play/pause control will be shown on a cycler set unless cycleShowControls has been set to false.
+</p>
+
+<a id="cycleControlsPos"></a>
+<p><b>cycleControlsPos</b> - 'tl' | 'tc' | 'tr' | <i>'bl'</i> | 'bc' | 'br'<br/>
+Controls the position of a cycler's visible play/pause control when cyclePauseOnClick and cycleShowControls are active.
+</p>
+
+<a id="cycleStartPaused"></a>
+<p><b>cycleStartPaused</b> - true | <i>false</i><br/>
+If set to true, and cyclePauseOnClick is enabled, a cycler set will begin in the paused state at page load.
+</p>
+
+<a id="cyclePauseOnHover"></a>
+<p><b>cyclePauseOnHover</b> - true | <i>false</i><br/>
+If set to true, image and thumbnail cyclers will pause and hold the current image while the mouse is hovered over the images.
+This option is ignored on mouse-less mobile devices where the concept of hovering does not exist.
+</p>
+
+<p><a href="#index">Back to Index</a></p>
+
+<div id="general" class="section_break"></div>
+<p class="section_title">General</p>
+
+<a id="mobile"></a>
+<p><b>mobile</b> - option string | object<br/>
+Options defined inside a <b>mobile</b> option string or object provide overrides that are set only for small-screen devices.
+There is a 'mobile' section in fbOptions that can be used for this purpose.
+A 'mobile' option can be inserted into any other option context as well, such as in 'className' and 'type' options and in per-item data-fb-options.
+</p>
+
+<a id="addVideoThumb"></a>
+<p><b>addVideoThumb</b> - width | 'small' | <i>'medium'</i> | 'large'<br/>
+Floatbox can fetch video thumbnails from YouTube, Vimeo (public videos only) or a locally served video folder,
+and can auto-insert these thumbnails into floatboxed links that reference these videos.
+To use this option with locally served .mp4 videos, place the desired thumbnail in the same folder and with the same filename as the .mp4 video file.
+The fetched thumbnail will be displayed at the size specified in the addVideoThumb option which can be set to
+an explicit pixel width, 'small' for 120px, 'large' for 480px, or a default of 240px for 'medium' if not set.
+Turn addVideoThumb off by setting it to false.
+</p>
+
+<a id="addPlayButton"></a>
+<p><b>addPlayButton</b> - 'small' | 'medium' | 'large' | false<br/>
+Any floatboxed anchor that contains a thumbnail can have a translucent play button displayed over top of it by setting the addPlayButton option to the desired button size (small, medium or large).
+The default action is to add a medium-sized play button to thumbnails added by the addVideoThumb option and to do nothing with other thumbnails.
+Use the addPlayButton to show a button on standard thumbnails or to change the button size for addVideoThumb thumbnails.
+Disable the default play button for addVideoThumb thumbnails by setting addPlayButton to false.
+Note that the 'small', 'medium' and 'large' settings set a size relative to the host thumbnail, and not an absolute pixel size.
+</p>
+
+<a id="fetchVideoInfo"></a>
+<p><b>fetchVideoInfo</b> - <i>true</i> | false<br/>
+When public videos from Vimeo are configured to show in a floatbox,
+the Vimeo API service is queried to fetch useful information about the video such as the title, default size, and the path to the video's thumbnail image.
+This can be set per-item in data-fb-options and per-page or globally.<br/>
+Vimeo provides API access only for public videos and will not send any info if the video is configured as private on the Vimeo site.
+Setting fetchVideoInfo:false in these cases can avoid some useless network activity.
+If the API info is unavailable, the video link's thumbnail, along with size and caption options, will need to be configured manually.
+</p>
+
+<a id="autoPlayVideo"></a>
+<p><b>autoPlayVideo</b> - <i>true</i> | false<br/>
+If the browser supports it, floatbox showing video will start automatically
+when the video loads unless autoPlayVideo is set to false.
+(Mobile browsers generally do not support auto-starting video.)<br/>
+Putting "?autoplay=0" on the video link's href is equivalent to setting "autoPlayVideo:false".
+</p>
+
+<a id="autoEndVideo"></a>
+<p><b>autoEndVideo</b> - <i>true</i> | false<br/>
+A floatbox showing video either with the built-in HTML5 video player or from YouTube or Vimeo will close automatically
+when the video ends unless autoEndVideo is set to false.<br/>
+Putting "?autoend=0" on the video link's href is equivalent to setting "autoEndVideo:false".
+</p>
+
+<a id="titleAsCaption"></a>
+<p><b>titleAsCaption</b> - <i>true</i> | false | 'a' | 'img'<br/>
+If a caption is not assigned directly with the caption option, titleAsCaption, when left at its default value of true, will pull a caption in from a title attribute found on the host anchor or on a thumbnail img element within that anchor.
+A setting of 'a' instructs it to look at title attributes only on the anchor element and a setting of 'img' causes it to look for titles only on thumbnail img elements.
+To disable the setting of captions from title attributes, set titleAsCaption to false.
+See the 'caption' and 'caption2' options for details on how to set caption content directly.
+The titleAsCaption option also applies to fbCycler sets and will cause the cycler captions shown below the images to be pulled from the img elements' title attributes.
+</p>
+
+<a id="altAsCaption"></a>
+<p><b>altAsCaption</b> - true | <i>false</i><br/>
+If altAsCaption is set to true and a caption has not been assigned either through the caption option or as a result of the titleAsCaption option, the caption will be pulled from the alt attribute on a thumbnail image inside the floatboxed anchor.
+The altAsCaption option also applies to fbCycler sets and will cause the cycler captions shown below the images to be pulled from the img elements' alt attributes.
+</p>
+
+<a id="showMagCursor"></a>
+<p><b>showMagCursor</b> - 'once' | true | <i>false</i><br/>
+Changes the mouse cursor to a small magnifying glass when the mouse is hovered over a thumbnail in a floatboxed anchor.
+If set to 'once', the cursor will change only for the first mouseover on the thumbnail image.
+Note, that some browsers cannot and will not show the custom cursor regardless of this option's setting.
+(Older Opera, most Mac browsers except Safari, and some Linux browsers are guilty of this.)
+</p>
+
+<a id="modal"></a>
+<p><b>modal</b> - <i>true</i> | false<br/>
+When modal is true, floatbox will overlay the whole page with a translucent layer,
+the underlying page will be unreachable until the box is closed,
+and any secondary floatboxes will be stacked on top of any already-opened boxes.
+Setting modal to false removes the translucent page overlay,
+allows the underlying page to be accessed while one or more floatboxes are open,
+and allows multiple open floatboxes to be re-arranged and restacked.
+</p>
+
+<a id="keepCentered"></a>
+<p><b>keepCentered</b> - true | false<br/>
+Floatboxes that don't have either of 'autoFit' or 'boxScroll' set to false will recenter, and possibly resize,
+when the browser window is scrolled or alters its width
+(such as when a mobile screen is pinch-zoomed or changes orientation).
+Explicitly set keepCentered to true or false to force or inhibit the re-centering behaviour on any floatbox
+regardless of other settings in effect.
+</p>
+
+<a id="boxScroll"></a>
+<p><b>boxScroll</b> - <i>true</i> | false<br/>
+If boxScroll is set to false, floatbox will use fixed positioning.
+Fixed positioning locks the floatbox in a fixed screen location that will not move in response to scrollbar actions.
+Because scrolling is not available when fixed positioning is used, boxScroll is ignored if the current displayed content is larger than the available screen dimensions.
+</p>
+
+<a id="pageScroll"></a>
+<p><b>pageScroll</b> - <i>true</i> | false<br/>
+When fixed positioning has been assigned by the boxScroll:false option, the scrollbars on the main page can be removed by setting pageScroll to false.
+This will prevent scrolling of the host page underneath the floatbox when the mouse wheel is used to scroll content inside a fixed-position floatbox.
+</p>
+
+<a id="instanceName"></a>
+<p><b>instanceName</b> - string<br/>
+instanceName is used in conjunction with the API function fb.getInstance to programmatically reference
+a particular floatbox when more than one is present.
+If no instanceName is provided, the default instance name will be the filename of the opening content.
+For example, a floatbox showing content of "/images/my_toys.jpg" without a specific instanceName assigned will be named "my_toys".
+See the API Reference for fb.getInstance() details.
+</p>
+
+<a id="zIndex"></a>
+<p><b>zIndex</b> - number (77777)<br/>
+Floatbox's default z-indices begin at 77777.
+If there is other content on a page that is set higher than this (such as maybe a navigation menu),
+a larger zIndex can be assigned to the floatboxes by setting this option.
+</p>
+
+<a id="framed"></a>
+<p><b>framed</b> - true | <i>false</i><br/>
+Normally, when floatbox.js is included on both a top page and an iframe child page,
+the two instances will link up and conspire to open all floatbox content in the top document,
+regardless of where the content originates from.
+There may be occasions when limiting Floatbox and its display to the confines of the iframe is desired.
+To do this, set the 'framed' option to true in the global section of an fbOptions definition on the iframe source page.
+</p>
+
+<a id="activateMedia"></a>
+<p><b>activateMedia</b> ** - <i>true</i> | false<br/>
+With 'activateMedia' left at its default of true, Floatbox will activate all links whose href refers to image, video or pdf content,
+without the need to set the 'floatbox' class on each of those links, or on a parent element.
+This is a change in behaviour from earlier Floatbox versions, and upgraders can set activateMedia to false in their global options to turn it off.
+</p>
+
+<a id="autoGallery"></a>
+<p><b>autoGallery</b> ** - true | <i>false</i><br/>
+'autoGallery' works in conjunction with 'activateMedia'.
+In normal mode, activateMedia will activate image links as standalone items.
+If 'autoGallery' is set to true, all auto-activated images will be grouped and displayed together as a gallery set.
+</p>
+
+<a id="preloadLimit"></a>
+<p><b>preloadLimit</b> ** - number (5)<br/>
+Floatbox will preload images that are set to show as floatbox content so that those images may be shown immediately when clicked
+instead of the visitor possibly watching the spinning loader graphic while waiting for the image to be fetched across the network.
+Image preloading starts shortly after the main page is fully rendered and window.onload fires so as not to intefere with page load times.
+preloadLimit sets the maximum number of content images that will be preloaded.
+</p>
+
+<a id="language"></a>
+<p><b>language</b> ** - 'xx' (see the languages folder)<br/>
+If the 'language' option is not set in global options then the 'lang' attribute of the active page's &lt;HTML&gt; element will be parsed for a usable localized language.
+If not found either explicitly set or in the 'lang' attribute, the default value of 'en' will assumed and English language strings will be used.
+To explicitly assign a language to be used by Floatbox's various strings, set the language option to one of the two letter codes that has a corresponding file available in the 'languages' folder.
+</p>
+
+<a id="classNames"></a>
+<p><b>floatboxClass</b> ** ('floatbox') - className<br/>
+<b>cyclerClass</b> ** ('fbCycler') - ...<br/>
+<b>tooltipClass</b> ** ('fbTooltip') - ...<br/>
+<b>contextClass</b> ** ('fbContext') - ...<br/>
+The class names that are used to activate floatbox elements can be changed in order to avoid conflicts with other html and css.
+For example, if the 'floatbox' class is already used for other purposes, the floatboxClass option could be changed to 'floater' or any other unused class name.
+</p>
+
+<p>** 'activateMedia', 'autoGallery', 'preloadLimit', 'easing', 'inflection, 'animationTime', 'language', and the 4 '*Class' names cannot be set as type, class or item options.
+They can be set only in the global section of fbOptions.js or a page-specific fbOptions javascript object.
+</p>
+
+<p><a href="#index">Back to Index</a></p>
+
+<div id="item" class="section_break"></div>
+<p class="section_title">Item-Specific</p>
+<p>Options in this section do not have default values defined.
+While most of these options can be applied globally, per page, per type and per class,
+they usually make sense only when assigned on a per item basis.
+</p>
+
+<a id="group"></a>
+<p><b>group</b> - string<br/>
+Anchors that have the same group option set on them will form a gallery set that can be navigated with the prev/next buttons or shown as a slideshow.
+</p>
+
+<a id="WidthHeight"></a>
+<p><b>width</b> - pixels | 'xx%'<br/>
+<b>height</b> - pixels | 'xx%' | 'xx%w'<br/>
+Width and height set in the options control floatbox content size.
+Plain integers are the size in pixels.
+If a percentage is given, like "85%", floatbox will be sized to that portion of the available browser viewport area.
+The height option can also accept a format like "60%w" which will set the height to be 60% of the width size.
+This can be useful for maintaining aspect ration of content while setting the width to be proportional to viewport size.
+A typical options tag containing dimension settings for multi-media content might look like this: <span class="code">data-fb-options="width:360 height:240"</span> or <span class="code">data-fb-options="width:75% height:60%w"</span>.
+If preferred, semicolons can be added to give a css-like syntax: <span class="code">data-fb-options="width:360px; height:240px;"</span>.
+Width and height options can apply to images, but they're intended for html and multimedia content.
+For images, it's best to serve images that are already sized to what they should be displayed at, which also ensures maintenance of correct proportions when resizing occurs.
+Note that for HTML content (ajax, inline, iframe or direct), it's best to set only a width, either in the options or in the HTML content styles,
+and let floatbox measure and auto-set the content height.
+This allows floatbox to get correct sizing across different browsers that have small variations in the way they layout pages.
+</p>
+
+<a id="contentScroll"></a>
+<p><b>contentScroll</b> - true | false<br/>
+The contentScroll option controls the display of the scroll bars on the floatbox when showing html content.
+The default setting of true allows most browsers to show scrollbars if needed and not show them if the content is not larger than the containing box.
+There are some old browsers that will show scrollbars whether needed or not.
+Set contentScroll to false to prevent scrollbars in HTML content.
+</p>
+
+<a id="captions"></a>
+<p><b>caption</b> - string | #hiddenDivId<br/>
+<b>caption2</b> - ...<br/>
+To display a caption in floatbox, use the title attribute of an &lt;a&gt; or &lt;img&gt; element
+when 'titleAsCaption' is set to true,
+use the alt attribute of an &lt;img&gt; when 'altAsCaption' is set to true,
+or set the 'caption' option in the anchor's data-fb-options attribute.
+Using the default 'titleAsCaption' capability is recommended because it required no additional markup for auto-activated media content.<br/>
+When assigned explicitly in a data-fb-options attribute, the text of the caption option must usually be surrounded by backquote characters (`) so as not to break parsing of the option string.<br/>
+Example: <span class="code">data-fb-options="caption:`This is my kool kaption`"</span><br/>
+The caption options can also be set to 'href' to parse out a suitable caption from the link's href filename.<br/>
+A second caption can be assigned to a floatbox item by setting 'caption2' in the same manner as 'caption'.<br/>
+The easiest way to include html content in a caption is to reference a hidden div that contains the desired content, like this:
+<span class="code">data-fb-options="caption:#myCaptionDiv"</span><br/>
+It's also possible, but more difficult, to place encoded HTML directly in the caption string.
+See the "Captions" section of the instructions for details.
+</p>
+
+<a id="HeaderFooter"></a>
+<p><b>header</b> - string | #hiddenDivId<br/>
+<b>footer</b> - ...<br/>
+Display transparent-background content immediately above or below the floatbox with the header and footer options.
+These can be set in the same manner as captions described above, and can use direct text, encoded html, or a reference to a hidden div (recommended).
+Although described here in the item-specific section of this options reference, like all options header and footer can be assigned globally, per page, by type, and by class name.
+</p>
+
+<a id="type"></a>
+<p><b>type</b> - 'ajax' | 'video' | 'image'<br/>
+Floatbox auto-detects content type based on the href file extension, but there are occasions where auto-detection can't work.
+Two examples are content that is to be loaded via AJAX and iframe-based video embeds.
+Load AJAX content by setting "type:ajax" in the anchor's data-fb-options attribute.
+This tells Floatbox that what would otherwise appear to be a request to load an iframe content page
+should instead load an HTML snippet via AJAX.
+For iframe-based video, set "type:video" in the options.
+(There's no need to set type:video for mp4 files, YouTube, or Vimeo. Floatbox already knows what these are.)
+Sometimes images are delivered by .php or .aspx server-side scripts, and these would need "type:image" on their links to be recognized as such.
+</p>
+
+<a id="showThis"></a>
+<p><b>showThis</b> - <i>true</i> | false<br/>
+An anchor with <span class="code">"showThis:false"</span> in its data-fb-options attribute will not be added to a gallery or slideshow collection.
+However, other options set on the anchor will take effect.
+The showThis option is there primarily to enable a clickable link to display a gallery as a slideshow.
+Such a link would have at least the following in its options attribute: <span class="code">data-fb-options="showThis:false doSlideshow:true group:xyz"</span>.
+The 'group' option is necessary to identify which gallery set this link is associated with.
+</p>
+
+<a id="sameBox"></a>
+<p><b>sameBox</b> - true | <i>false</i><br/>
+The default behaviour when floatboxed content is invoked while an existing floatbox is already being displayed is to display the new content in a new secondary floatbox over top of the existing one.
+Use sameBox:true to cause the new content to replace the existing content within the existing floatbox and not open up a second box.
+</p>
+
+<a id="newWindow"></a>
+<p><b>newWindow</b> - true | <i>false</i><br/>
+'newWindow' makes sense only when used inside a 'mobile' option set for small-screen devices.
+It instructs those devices to open the content in a new browser tab or window, rather than showing it inside a floatbox.
+In an unmolested fbOptions.js file, "newWindow:true" is set for mobile devices loading content type 'pdf'.
+</p>
+
+<a id="altContent"></a>
+<p><b>altContent</b> - string<br/>
+Provide alternate content for floatboxed images and iframes by assigning text to the 'altContent' option.
+Use of altContent provides text for screen-readers and enhances a site's <a href="https://en.wikipedia.org/wiki/Section_508_Amendment_to_the_Rehabilitation_Act_of_1973" target="_blank">Section 508</a> accessibility compliance.
+</p>
+
+<a id="info"></a>
+<p><b>info</b> - source reference<br/>
+Assigning a url or other source type to the info option will make floatbox display an "Info..." link that will load the referenced source in a new secondary floatbox.
+The 'infoOptions' and 'infoText' options can be combined with 'info' to control the appearance and behaviour.
+See the instructions and demo for more details.
+</p>
+
+<a id="useMap"></a>
+<p><b>useMap</b> - id<br/>
+An image shown as floatbox content can have an area-map assigned to it by setting the useMap option.
+The map element should be defined on the base page and have an id attribute set on it.
+Reference this id as the value of the useMap option. A name attribute on the map element and a reference to that name will not be sufficient to find it; use an id.
+Note that the areas in the map can themselves have floatboxes, tooltips, and context boxes assigned to them.
+An area map assigned to a floatboxed image will always scale appropriately with the images as it is resized or auto-fit to the viewport.
+</p>
+
+<a id="source"></a>
+<p><b>source</b> - source reference<br/>
+A "source:`...`" option, usually set in the data-fb-options attribute, will override the href defined on a floatbox-enabled anchor.
+Floatbox will use the source option value, while browsers with javascript disabled will load the anchor's standard href value.
+This can be used to provide alternate content for javascript-disabled clients.
+'source' can be any content type (url, ajax, inline div, or direct html).
+</p>
+
+<a id="className"></a>
+<p><b>className</b> - string<br/>
+Setting 'className' in the options is, in most contexts, equivalent to assigning the 'class' attribute on a starting link.
+Being able to set className directly in the options allows for including another set of className based options into the current definition,
+can be used to apply class options in fb.start() API calls, and can be handy for assigning class options to fbTooltips or any other or any links
+where messing with the class attribute is not desired.
+</p>
+
+<a id="autoStart"></a>
+<p><b>autoStart</b> - 'once' | true | <i>false</i><br/>
+Place <span class="code">"autoStart:true"</span> in the options assigned to a floatbox-enabled &lt;a&gt; element
+to automatically start the associated content (referenced by the href attribute) at page load time without the user clicking on anything.
+An autoStart setting of 'once' will cause that item to auto-start only on the first load of the page per browser session.
+Note that autoStart can also be set in the page's query string, as described in the instructions document.
+</p>
+
+<a id="autoDelay"></a>
+<p><b>autoDelay</b> - seconds (0)<br/>
+A floatboxed link with 'autoStart' set on it normally opens as soon as the document and Floatbox software are loaded and ready for use.
+Set 'autoDelay' to a number of seconds to make the floatbox wait a set period of time before auto-starting.
+</p>
+
+<a id="autoEnd"></a>
+<p><b>autoEnd</b> - seconds (0)<br/>
+Any floatbox can be set to automatically close after a set period of time.
+This is particularly useful for enhanced tooltips that should show for 5 seconds or so and then get out of the way.
+It could also be used to alienate site visitors by combining autoStart and autoEnd to show an interstitial ad
+for a set period of time in a floatbox that has all other mechanisms and controls for closing the floatbox disabled.
+</p>
+
+<a id="loadPageOnClose"></a>
+<p><b>loadPageOnClose</b> - 'self' | 'back' | url<br/>
+This controls browser behaviour when a floatbox closes.
+If set to the string 'self', the host page will be refreshed on exit.
+If set to 'back', the previous page in the browser's history list will be loaded.
+If loadPageOnClose is set to a string other than 'self' or 'back', that string is assumed to be a valid url and the browser will be instructed to load that page.
+When loadPageOnClose is set to a url, it typically needs to be be enclosed in backquotes (`) so as not to break parsing of the option string.
+The loadPageOnClose option applies only to standard floatboxes and will not fire when a tooltip or context box closes.
+Note that when using the API call 'fb.end()' to close a box, the loadPageOnClose value can be passed directly to that function as a parameter.
+E.g., <span class="code">fb.end('/somePage.html')</span>
+See the API reference for details.
+</p>
+
+<a id="order"></a>
+<p><b>order</b> - number<br/>
+A Floatbox gallery set shows the images in a Floatbox in the order in which they appear within the document.
+Set a different order on the gallery set members by assigning order numbers to the member items.
+The set will be sorted in the numerical order of the assigned values.
+</p>
+
+<p><a href="#index">Back to Index</a></p>
+
+<div id="callbacks" class="section_break"></div>
+<p class="section_title">Event Callbacks</p>
+
+<p><b>beforeBoxStart</b> - function | eval string<br/>
+<b>afterBoxStart</b> - ...<br/>
+<b>beforeItemStart</b> - ...<br/>
+<b>afterItemStart</b> - ...<br/>
+<b>beforeItemEnd</b> - ...<br/>
+<b>afterItemEnd</b> - ...<br/>
+<b>beforeBoxEnd</b> - ...<br/>
+<b>afterBoxEnd</b> - ...<br/>
+<b>beforePrint</b> - ...<br/>
+</p><p>
+The Floatbox interface includes various event callbacks that run assigned code at various points in a floatbox's life-cycle.
+The callbacks are setup as Floatbox options to which javascript functions or code is assigned.
+The callback options are assigned their values in the same manner as other options and can be defined
+in fbOptions or on an anchor's data-fb-options attribute.<br/>
+Callbacks defined in a page's fbOptions definition can be either true javascript functions or strings to be eval'd.<br/>
+Callbacks set in an anchor's data-fb-options tag can be the name of a global function to be called
+or a string of javascript code to be eval'd.
+</p><p>
+If any of the before* callback functions return a value of false, the associated Floatbox action will be cancelled.<br/>
+This does not apply to eval'd text strings; they don't return values and so cannot cancel Floatbox actions.
+</p><p>
+Some callback functions will receive an argument that is the active floatbox instance.
+This might be handy for something like checking the state of the HTML within fbContent prior to allowing a box end to occur.
+The callbacks that receive the instance parameter are beforeItemStart, afterBoxStart, afterItemStart, beforeItemEnd, beforeBoxEnd and beforePrint.
+</p><p>
+Example - A function callback in the page options:
+</p>
+<div class="code">function myFunc () {
+  alert( 'eat a peach' );
+  return true;
+}
+fbOptions = {
+  global: {
+    beforeBoxStart: myFunc
+  }
+};
+</div>
+<p>
+And a string callback in an anchor's data-fb-options attribute:
+</p>
+<div class="code">&lt;a href="xyz.php" class="floatbox"
+data-fb-options="afterItemEnd:`myFunc();`" &gt;
+  talk about fruit
+&lt;/a&gt;
+</div>
+(Don't forget the back-quotes. They're often required for correct parsing of code strings.)
+<p>
+That previous example could be simplified to just the defined function's name:
+</p>
+<div class="code">&lt;a href="xyz.php" class="floatbox"
+data-fb-options="afterItemEnd:myFunc" &gt;
+  talk about fruit
+&lt;/a&gt;
+</div>
+
+<a id="beforeBoxStart"></a>
+<p><br/>
+<b>beforeBoxStart</b> is executed prior to a floatbox being started by either a click on an activated anchor or by an API fb.start call.<br/>
+It could be used to check that desired conditions have been met before starting up the floatbox,
+and cancelling the box start by returning false from the assigned function if the conditions are not right.
+</p>
+
+<a id="beforeItemStart"></a>
+<p><br/>
+<b>beforeItemStart</b> differs from beforeBoxStart only when a gallery set of items is being displayed.
+beforeItemStart will fire whenever the associated gallery set item is shown whereas beforeBoxStart will not fire when the floatbox navigates to new content in a set.
+If the beforeItemStart returns false from an assigned function, the floatbox will not start if it is just starting up,
+or else will not navigate if it is responding to a previous or next command in a gallery set.
+</p>
+
+<a id="afterBoxStart"></a>
+<p><br/>
+<b>afterBoxStart</b> runs as soon as a new floatbox is initially created.
+It differs from beforeBoxStart in that it cannot cancel the floatbox's creation and it receives a single parameter which is a reference to the newly created floatbox instance.<br/>
+afterBoxStart could be used to tweak or modify some of the components in the referenced floatbox.
+</p>
+
+<a id="afterItemStart"></a>
+<p><br/>
+<b>afterItemStart</b> runs whenever new content is shown in a floatbox,
+either because the floatbox has just started, or because the associated item has just been invoked by a 'previous' or 'next' action in a gallery set.<br/>
+The afterItemStart function receives a reference to the current floatbox instance and may be used to setup initial states or behaviours in the freshly arrived content.
+It can be considered as similar to a window.onload event where the 'window' is the floatbox display area (fbContent).
+</p>
+
+<a id="beforeItemEnd"></a>
+<p><br/>
+<b>beforeItemEnd</b> is fired whenever a currently showing item is about to go away,
+either from its host floatbox closing, or from a gallery set navigation.
+It receives a single parameter that is a reference to the current floatbox
+and could be used to check that required conditions in the content have been met.
+The beforeItemEnd function can cancel a pending floatbox end or navigation by returning false.<br/>
+For example, suppose we have a quiz with a series of multiple choice questions shown as a multi-question gallery set.
+beforeItemEnd could check that an answer has been selected and, if not,
+could alert that all questions must be answered and then return false to cancel navigation to the next question.
+</p>
+
+<a id="beforeBoxEnd"></a>
+<p><br/>
+<b>beforeBoxEnd</b> is fired prior to a floatbox closing, receives a parameter of current floatbox instance, and can return false to cancel the closing of the floatbox.<br/>
+It could, for example, be used to ask for confirmation before closing a displayed shopping cart that had unprocessed items in it.
+</p>
+
+<a id="afterItemEnd"></a>
+<p><br/>
+<b>afterItemEnd</b> will fire whenever a floatbox item goes away, either because the floatbox has closed or because a gallery set has navigated to a new item.<br/>
+This is probably the least useful of Floatbox's callbacks and is provided primarily for consistency.
+It could be used for something obscure like sending an AJAX notification back to the server that reports how long the departing item was viewed.
+</p>
+
+<a id="afterBoxEnd"></a>
+<p><br/>
+<b>afterBoxEnd</b> fires when a floatbox has finished closing in response to one of the close controls or from an API fb.end call.<br/>
+This is useful in an interactive web page to invoke an action or behaviour when the user is finished with the floatbox and closes it.
+(Note: Page refreshes and navigation are best done with the 'loadPageOnClose' option, or from script using the 'fb.end()' API function.)
+</p>
+
+<a id="beforePrint"></a>
+<p><br/>
+<b>beforePrint</b> will fire whenever Floatbox's node printing capability is invoked,
+whether directly through the fb.printNode API function or through the 'showPrint' option.<br/>
+Use this to manipulate content prior to printing, or perhaps to display a message or disclaimer.
+Returning false from the beforePrint function will cancel the print request.
+</p>
+
+<p><a href="#index">Back to Index</a></p>
+
+<div class="section_break"></div>
+
+</div>
+</body>
+</html>

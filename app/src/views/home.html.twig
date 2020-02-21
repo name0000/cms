@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="{{constant('LOCALE')}}">
+
+<head>
+    <title>{% block title %} {{'Home Page Title'|trans}} {% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="/css/pure-min.css">
+        <link rel="stylesheet" type="text/css" href="/css/pure-extend.css">
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="/css/grids-responsive-old-ie-min.css">
+        <![endif]-->
+        <!--[if gt IE 8]><!-->
+            <link rel="stylesheet" type="text/css" href="/css/grids-responsive-min.css">
+        <!--<![endif]-->
+        <link rel="stylesheet" type="text/css" href="/css/styles.css">
+        <link rel="stylesheet" type="text/css" href="/css/tabs.css">
+
+		<link rel="stylesheet" type="text/css" href="/css/slick/slick.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/slick/slick-theme.css"/>
+
+		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="/js/slick/slick.min.js"></script>
+
+    {% endblock %}
+</head>
+
+<body>
+
+	<div class="homepage bigheader" id="bigheader">
+
+		<form action="/search" method="get">
+			<div class="searchlinediv">
+			<div class="searchlinediv"> 
+				<input name="q" placeholder=" &nbsp; {{'What are you looking for?'|trans}}" type="text" />
+			</div>
+			</div>
+		</form>
+	 
+	</div>
+ 
+<div class="content">
+
+	<div class="slickslider">
+	{% for comment in comments %}
+
+		<div class="pure-g comments margintop15 ">
+
+			
+
+			<div class="pure-u-5-24 commentslider-homepageimage-wrapper ">
+				<img alt="{{ comment.items_name }} Image" src="{{ comment.items_image }}" class="homepageimage" />
+			</div>
+			<div class="pure-u-19-24">
+				<div class="commentsheader"><a href="/{{ comment.items_id }}/{{comment.items_slug}}">{{ comment.items_name }}</a></div>
+				<div  class="stars">
+					{% for i in 1..comment.rating %}
+						★
+					{% endfor %}
+					{% if comment.rating<5 %}
+						{% for i in 1..5-comment.rating %}
+							☆
+						{% endfor %}
+					{% endif %}
+				</div> 
+
+				<div class="username"><strong>{{ comment.author }}</strong></div>
+				<div class="feebacktext-home">
+				
+
+
+					{{ comment.text|length > 200 ? comment.text|slice(0, 200) ~ '...' : comment.text|replace({'\\u2019':"'",'\\u201d':'','\\u201c':'','\\u2013':' ','\\n':"<br>"}) }}
+				</div>
+				<span class="placeandtime">{{ comment.details }}</span>
+			</div>
+		</div>
+
+	{% endfor %}
+	</div>
+
+	<div class="pure-g">
+		<div class="pure-u-1">
+	 
+			<div class="home artistphotosblock">
+			 
+			    {% for a in items %}
+			    	<div class="homepageitem">
+			    	<a href="/{{a.id}}/{{a.slug}}"><img alt="{{a.name}}" src="{{a.image}}" title="{{a.name}}" style="max-height:150px; max-width:195px" /></a>
+			    	</div>
+			    {% endfor %}
+			   
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="darkfooter">
+	<div class="content">
+
+		<div class="pure-g">
+			
+			{# <div class="pure-u-1-3">
+
+				<b>Popular Categories</b>
+				<ul>
+					
+						<li><a href="/category/48">--</a></li>
+						<li><a href="/category/3">--</a></li>
+						<li><a href="/category/5">--</a></li>
+						<li><a href="/category/26">-- Fiction</a></li>
+					
+				</ul>
+			</div> #}
+
+
+			<div class="pure-u-1-3 homefooter">
+				
+				<b>{{'Recently added'|trans}}</b>
+				<div class="slickslider">
+				
+
+				{% set cols = 3 %}
+				{% for f in footer_links %}
+					{% if loop.index0 % cols == 0 %}
+						<div>
+						<ul>
+					{% endif %}
+
+					<li ><a href="/{{f.id}}/{{f.slug}}">{{f.name}}</a></li>
+
+					{% if (loop.index0 % cols == cols - 1 or loop.last) %}
+						</ul>
+						</div>
+					{% endif %}
+
+				{% endfor %}
+
+			
+				</div>
+
+			</div>
+
+			<div class="pure-u-1-3">
+
+				<b>{{'Useful Links'|trans}}</b>
+				<ul>
+					
+						<li><a href="/page/privacy-policy">{{'Privacy Policy'|trans}}</a></li>
+						{% if blog_links|length > 0 %}<li><a href="/blog/">Blog</a></li>{% endif %}	
+                        <li><a href="/contact">{{'Contact us'|trans}}</a></li>
+
+					
+				</ul>
+			</div>
+
+			{% if blog_links|length > 0 %}
+				<div class="pure-u-1-3">
+					<b>Blog</b>
+					{% for l in blog_links %}
+						<li><a href="/blog/{{l.href}}">{{l.title}}</a> </li>
+					{% endfor %}
+				</div>
+			{% endif %}
+
+		</div>
+
+	</div>
+</div>
+
+<script>
+    $(document).ready(function(){
+	  $('.slickslider').slick({
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		// autoplay: true,
+		autoplaySpeed: 2000,
+		dots: false,
+	    prevArrow: false,
+	    nextArrow: false
+	  });
+	});
+
+	document.getElementById("bigheader").style.height = "100vh";
+</script>
+
+</body>
+
+</html>

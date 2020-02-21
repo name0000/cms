@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title|capitalize }} {{'Page'|trans}} {% endblock %}
+
+{% block body %}
+
+<div class="pure-g blog">
+	<div class="pure-u-1 pure-u-md-17-24 setborder margintop15 padding10">
+		{{content}}
+	</div>
+
+	{% if links|length >0 %}
+	<div class="pure-u-1 pure-u-md-7-24 margintop15 padding10">
+		<h4> {{'Recent articles'|trans}} </h4>
+		<ul>
+		{% for l in links %}
+			<li><a href="{{l.href}}">{{l.title}}</a> </li>
+		{% endfor %}
+		</ul>
+	</div>
+	{% endif %}
+</div>
+{% endblock %}

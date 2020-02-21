@@ -1,0 +1,17 @@
+{	
+	"require" :
+	{
+		"twig/twig": "^2.4",
+		"duzun/hquery": "^2.2",
+        "guzzlehttp/guzzle": "^6.3",
+		"cocur/slugify": "^4.0",
+		"symfony/translation": "^3.1",
+ 		"symfony/twig-bridge": "^3.1",
+    	"symfony/config": "^3.1",
+	    "symfony/yaml": "^3.1"
+	},
+	"autoload": {
+		"files": ["src/config.php"],
+        "classmap": ["src/helper.php", "src/model.php", "src/controller.php", "vendor/rawInclude/dice.php", "vendor/rawInclude/router.php"]
+    }
+}

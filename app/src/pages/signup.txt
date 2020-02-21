@@ -1,0 +1,15 @@
+<h3>Sign up</h3>
+
+<p> Restricted for now. Please check back soon! </p>
+
+<form class="pure-form" action="#" method="POST">  
+
+<fieldset class="pure-group">
+	<input autocomplete='name' name="feedback_name" type="text" class="pure-input-1" placeholder="Your Name">
+	<input autocomplete='email' name="feedback_email" type="email" class="pure-input-1" placeholder="Email">
+</fieldset>
+
+
+
+<button disabled type="submit" class="pure-button pure-input-1 pure-button-primary">Submit</button>
+</form>
