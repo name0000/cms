@@ -18,7 +18,7 @@ We'll need a database, please create it. Lets assume the name for the database i
 1 - copy git repo, run composer install
 
 ```
-git clone git@github.com:name0000/cms.git .
+git clone git@github.com:name0000/cms.git . # mind the dot
 cd app
 composer install
 ```
@@ -37,7 +37,7 @@ define('DB_PASS','pwd');
 
 4 - start server. Go to the folder where you cloned the git repo and:
 ```
-php -S localhost:9090 -t /app/public
+php -S localhost:9090 -t app/public
 ```
 
 Now you should be able to access empty version of the website on localhost:9090
