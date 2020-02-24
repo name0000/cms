@@ -1,6 +1,6 @@
 # Hello :)
 
-This repo is a primitive web app framerowk that based on MVC.
+This repo is a primitive, but easy and convenient mini web app framerowk based on MVC.
 Queries to database are implemebted with raw PDO requests.
 Includes autowiring, Twoig is used for view files.
 
