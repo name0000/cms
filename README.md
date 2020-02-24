@@ -1,12 +1,12 @@
 # Hello :)
 
-This repo is a primitive, but easy and convenient mini web framework based on MVC.
-Queries to database are implemented with raw PDO requests.
+This repo is a primitive, but easy and convenient mini web framework based on MVC.  
+Queries to database are implemented with raw PDO requests.  
 Includes autowiring, Twig is used for view files.
 
 This is an instruction on how to install the framework. You'll need php, composer, mysql and git on your system. 
 
-The instruction below is for linux and mac users, but i suppose that steps on Windows would be very similar, thaw i have not had a chance to test installation workflow on Windows yet.
+The instruction below were tested with linux and mac OS, but i suppose that steps on Windows would be very similar, thaw i have not had a chance to test installation workflow on Windows yet.
 
 ## How to Install
 
