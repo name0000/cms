@@ -27,9 +27,9 @@ Router::route('/', function() use($controller){
 });
 
 // item page
-Router::route('/([0-9]+)/([^/]+)', function($id, $artist_name) use($controller){
+Router::route('/([0-9]+)/([^/]+)', function($id, $item_name) use($controller){
 
-	$controller -> itemPage($id, $artist_name);
+	$controller -> itemPage($id, $item_name);
 
 });
 

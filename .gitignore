@@ -1,2 +1,3 @@
-app/vendor
-app/cache
+app/vendor/*
+!app/vendor/rawInclude/
+app/cache/*
